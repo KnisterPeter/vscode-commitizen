@@ -15,18 +15,11 @@ const types = {
 };
 
 export function activate(context: vscode.ExtensionContext) {
-  context.subscriptions.push(vscode.commands.registerCommand('extension.commit', () => {
+  context.subscriptions.push(vscode.commands.registerCommand('extension.commit', async () => {
     const typePicks = Object.keys(types).map(feature => ({
       label: feature,
       description: types[feature]
     }))
-
-    const required = (input: string) => {
-      if (input.length > 0) {
-        return '';
-      }
-      return 'Value is required';
-    };
 
     let type;
     let scope;
@@ -34,53 +27,63 @@ export function activate(context: vscode.ExtensionContext) {
     let body;
     let breaking;
     let closes;
-    vscode.window.showQuickPick(typePicks, {placeHolder: 'Select the type of change that you\'re committing'})
-      .then(pick => {
-        if (pick) {
-          type = pick.label;
-        }
-      })
-      .then(() => vscode.window.showInputBox({placeHolder: 'Denote the SCOPE of this change (optional)'}))
-      .then(input => {
-        if (input) {
-          scope = input;
-        }
-      })
-      .then(() => vscode.window.showInputBox({placeHolder: 'Write a SHORT, IMPERATIVE tense description of the change', validateInput: required}))
-      .then(input => {
-        if (input) {
-          subject = input;
-        }
-      })
-      .then(() => vscode.window.showInputBox({placeHolder: 'Provide a LONGER description of the change (optional). Use "|" to break new line'}))
-      .then(input => {
-        if (input) {
-          body = input.replace('|', '\n');
-        }
-      })
-      .then(() => vscode.window.showInputBox({placeHolder: 'List any BREAKING CHANGES (optional)'}))
-      .then(input => {
-        if (input) {
-          breaking = input;
-        }
-      })
-      .then(() => vscode.window.showInputBox({placeHolder: 'List any ISSUES CLOSED by this change (optional). E.g.: #31, #34'}))
-      .then(input => {
-        if (input) {
-          closes = input;
-        }
-      })
-      .then(() => {
-        if (type && subject) {
-          const messsage = type +
-            (scope ? `(${scope})` : '') +
-            `: ${subject}\n\n${body}\n\n` +
-            (breaking ? `BREAKING CHANGE: ${breaking}` : '') +
-            (closes ? `Closes ${closes}` : '');
-          commit(vscode.workspace.rootPath, messsage);
-        }
-      });
+    const pick = await vscode.window.showQuickPick(typePicks, {placeHolder: 'Select the type of change that you\'re committing'})
+    if (pick) {
+      type = pick.label;
+    }
+    let next = await ask('Denote the SCOPE of this change (optional)', input => scope = input);
+    if (next) {
+      next = await askRequired('Write a SHORT, IMPERATIVE tense description of the change', input => subject = input);
+    }
+    if (next) {
+      next = await ask('Provide a LONGER description of the change (optional). Use "|" to break new line', input => body = input.replace('|', '\n'));
+    }
+    if (next) {
+      next = await ask('List any BREAKING CHANGES (optional)', input => breaking = input);
+    }
+    if (next) {
+      next = await ask('List any ISSUES CLOSED by this change (optional). E.g.: #31, #34', input => closes = input);
+    }
+    if (next) {
+      const messsage = type +
+        (scope ? `(${scope})` : '') +
+        `: ${subject}\n\n${body}\n\n` +
+        (breaking ? `BREAKING CHANGE: ${breaking}\n` : '') +
+        (closes ? `Closes ${closes}` : '');
+      commit(vscode.workspace.rootPath, messsage);
+    }
   }));
+}
+
+async function ask(question: string, save: (input: string) => void): Promise<boolean> {
+  return _ask(false, question, save);
+}
+
+async function askRequired(question: string, save: (input: string) => void): Promise<boolean> {
+  return _ask(true, question, save);
+}
+
+const requiredValidator = (input: string) => {
+  if (input.length > 0) {
+    return '';
+  }
+  return 'Value is required';
+};
+async function _ask(required: boolean, question: string, save: (input: string) => void): Promise<boolean> {
+  const options: vscode.InputBoxOptions = {
+    placeHolder: question
+  };
+  if (required) {
+    options.validateInput = requiredValidator;
+  }
+  return vscode.window.showInputBox(options)
+    .then(input => {
+      if (input === undefined) {
+        return false;
+      }
+      save(input);
+      return true;
+    });
 }
 
 export async function commit(cwd: string, message: string): Promise<void> {
