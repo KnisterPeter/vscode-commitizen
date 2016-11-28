@@ -1,25 +1,26 @@
-import * as vscode from 'vscode';
 import * as execa from 'execa';
+import * as vscode from 'vscode';
 
 const types = {
-  'feat': 'A new feature',
-  'fix': 'A bug fix',
-  'docs': 'Documentation only changes',
-  'style': 'Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)',
-  'refactor': 'A code change that neither fixes a bug nor adds a feature',
-  'perf': 'A code change that improves performance',
-  'test': 'Adding missing tests or correcting existing tests',
-  'build': 'Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)',
-  'ci': 'Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)',
-  'chore': 'Other changes that don\'t modify src or test files'
+  feat: 'A new feature',
+  fix: 'A bug fix',
+  docs: 'Documentation only changes',
+  style: 'Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)',
+  refactor: 'A code change that neither fixes a bug nor adds a feature',
+  perf: 'A code change that improves performance',
+  test: 'Adding missing tests or correcting existing tests',
+  build: 'Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)',
+  ci: 'Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)',
+  chore: 'Other changes that don\'t modify src or test files'
 };
 
-export function activate(context: vscode.ExtensionContext) {
+export function activate(context: vscode.ExtensionContext): void {
+  // tslint:disable-next-line:cyclomatic-complexity
   context.subscriptions.push(vscode.commands.registerCommand('extension.commit', async () => {
     const typePicks = Object.keys(types).map(feature => ({
       label: feature,
       description: types[feature]
-    }))
+    }));
 
     let type;
     let scope;
@@ -27,7 +28,8 @@ export function activate(context: vscode.ExtensionContext) {
     let body;
     let breaking;
     let closes;
-    const pick = await vscode.window.showQuickPick(typePicks, {placeHolder: 'Select the type of change that you\'re committing'})
+    const pick = await vscode.window.showQuickPick(typePicks,
+      {placeHolder: 'Select the type of change that you\'re committing'});
     if (pick) {
       type = pick.label;
     }
@@ -36,7 +38,8 @@ export function activate(context: vscode.ExtensionContext) {
       next = await askRequired('Write a SHORT, IMPERATIVE tense description of the change', input => subject = input);
     }
     if (next) {
-      next = await ask('Provide a LONGER description of the change (optional). Use "|" to break new line', input => body = input.replace('|', '\n'));
+      next = await ask('Provide a LONGER description of the change (optional). Use "|" to break new line',
+        input => body = input.replace('|', '\n'));
     }
     if (next) {
       next = await ask('List any BREAKING CHANGES (optional)', input => breaking = input);
@@ -88,5 +91,7 @@ async function _ask(required: boolean, question: string, save: (input: string) =
 
 export async function commit(cwd: string, message: string): Promise<void> {
   return execa('git', ['commit', '-m', message], {cwd})
-    .then(() => {});
+    .then(() => {
+      //
+    });
 }
