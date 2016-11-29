@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.2.1...v0.3.0) (2016-11-29)
+
+
+### Features
+
+* start reading cz-config (types and scopes) ([24e12ad](https://github.com/KnisterPeter/vscode-commitizen/commit/24e12ad))
+
+
+
 <a name="0.2.1"></a>
 ## [0.2.1](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.2.0...v0.2.1) (2016-11-28)
 
