@@ -5,3 +5,15 @@
 [![Installs](http://vsmarketplacebadge.apphb.com/installs/knisterpeter.vscode-commitizen.svg)](https://marketplace.visualstudio.com/items?itemName=KnisterPeter.vscode-commitizen)
 
 This vscode extension add commitizen support.
+
+## Usage
+
+* Open the command panel (`ctrl+shift+p` or `command+shift+p`) and type 'conventional commit'.
+* Select the command and answer the questions afterwards (type, scope, subject, body, breaking changes, closed issues).
+* After the closed issues the commit is done automatically.
+* **Note**: During answering the questions just hit `ESC`to cancel the commit.
+
+## Configuration
+
+To configure this extension follow [cz-customizable](https://github.com/leonardoanalista/cz-customizable) and
+create the required config file. This also read by this extension if configured.
