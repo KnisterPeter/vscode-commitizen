@@ -49,7 +49,13 @@ async function readCzConfig(): Promise<CzConfig|undefined> {
 
 async function askOneOf(question: string, picks: vscode.QuickPickItem[],
     save: (pick: vscode.QuickPickItem) => void): Promise<boolean> {
-  const pick = await vscode.window.showQuickPick(picks, {placeHolder: question});
+  const pickOptions: vscode.QuickPickOptions = {
+    placeHolder: question,
+    ignoreFocusOut: true,
+    matchOnDescription: true,
+    matchOnDetail: true
+  };
+  const pick = await vscode.window.showQuickPick(picks, pickOptions);
   if (pick === undefined) {
     return false;
   }
@@ -60,7 +66,8 @@ async function askOneOf(question: string, picks: vscode.QuickPickItem[],
 async function ask(question: string, save: (input: string) => void,
     validate?: (input: string) => string): Promise<boolean> {
   const options: vscode.InputBoxOptions = {
-    placeHolder: question
+    placeHolder: question,
+    ignoreFocusOut: true
   };
   if (validate) {
     options.validateInput = validate;
