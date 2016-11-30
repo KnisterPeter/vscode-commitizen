@@ -2,6 +2,7 @@ import * as execa from 'execa';
 import {join} from 'path';
 import * as sander from 'sander';
 import * as vscode from 'vscode';
+import * as wrap from 'wrap-ansi';
 
 export async function activate(context: vscode.ExtensionContext): Promise<void> {
   const czConfig = await readCzConfig();
@@ -184,7 +185,7 @@ class ConventionalCommitMessage {
   public async getBody(): Promise<void> {
     if (this.next) {
       this.next = await ask('Provide a LONGER description of the change (optional). Use "|" to break new line',
-        input => this.body = input.replace('|', '\n'));
+        input => this.body = wrap(input.replace('|', '\n'), 72, {hard: true}));
     }
   }
 
