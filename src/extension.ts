@@ -56,26 +56,13 @@ async function askOneOf(question: string, picks: vscode.QuickPickItem[],
   return true;
 }
 
-async function ask(question: string, save: (input: string) => void): Promise<boolean> {
-  return _ask(false, question, save);
-}
-
-async function askRequired(question: string, save: (input: string) => void): Promise<boolean> {
-  return _ask(true, question, save);
-}
-
-const requiredValidator = (input: string) => {
-  if (input.length > 0) {
-    return '';
-  }
-  return 'Value is required';
-};
-async function _ask(required: boolean, question: string, save: (input: string) => void): Promise<boolean> {
+async function ask(question: string, save: (input: string) => void,
+    validate?: (input: string) => string): Promise<boolean> {
   const options: vscode.InputBoxOptions = {
     placeHolder: question
   };
-  if (required) {
-    options.validateInput = requiredValidator;
+  if (validate) {
+    options.validateInput = validate;
   }
   return vscode.window.showInputBox(options)
     .then(input => {
@@ -183,8 +170,14 @@ class ConventionalCommitMessage {
 
   public async getSubject(): Promise<void> {
     if (this.next) {
-      this.next = await askRequired('Write a SHORT, IMPERATIVE tense description of the change',
-        input => this.subject = input);
+      const validator = (input: string) => {
+        if (input.length === 0 || input.length > 50) {
+          return 'Subject is required and must be less than 50 characters';
+        }
+        return '';
+      };
+      this.next = await ask('Write a SHORT, IMPERATIVE tense description of the change',
+        input => this.subject = input, validator);
     }
   }
 
