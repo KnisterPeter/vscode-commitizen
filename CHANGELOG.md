@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.3"></a>
+## [0.3.3](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.3.2...v0.3.3) (2016-12-02)
+
+
+### Bug Fixes
+
+* do not close input if focus is lost ([1966396](https://github.com/KnisterPeter/vscode-commitizen/commit/1966396))
+* use proper command namespace ([fa43433](https://github.com/KnisterPeter/vscode-commitizen/commit/fa43433))
+
+
+
 <a name="0.3.2"></a>
 ## [0.3.2](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.3.1...v0.3.2) (2016-11-30)
 
