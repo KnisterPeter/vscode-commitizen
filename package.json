@@ -18,13 +18,13 @@
     "conventional-changelog"
   ],
   "activationEvents": [
-    "onCommand:extension.commit"
+    "onCommand:vscode-commitizen.commit"
   ],
   "main": "./out/src/extension",
   "contributes": {
     "commands": [
       {
-        "command": "extension.commit",
+        "command": "vscode-commitizen.commit",
         "title": "conventional commit",
         "category": "Commitizen"
       }

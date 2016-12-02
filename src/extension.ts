@@ -7,7 +7,7 @@ import * as wrap from 'wrap-ansi';
 export async function activate(context: vscode.ExtensionContext): Promise<void> {
   const czConfig = await readCzConfig();
 
-  context.subscriptions.push(vscode.commands.registerCommand('extension.commit', async () => {
+  context.subscriptions.push(vscode.commands.registerCommand('vscode-commitizen.commit', async () => {
     const ccm = new ConventionalCommitMessage(czConfig);
     await ccm.getType();
     await ccm.getScope();
