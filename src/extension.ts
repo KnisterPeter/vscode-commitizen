@@ -160,10 +160,15 @@ class ConventionalCommitMessage {
     }
   }
 
+  private hasScopes(): boolean {
+    return Boolean(this.czConfig && (!this.czConfig.allowCustomScopes ||
+      this.czConfig.scopes && this.czConfig.scopes.length === 0));
+  }
+
   public async getScope(): Promise<void> {
     if (this.next) {
-      if (this.czConfig && (!this.czConfig.allowCustomScopes || this.czConfig.scopes.length === 0)) {
-        if (this.czConfig.scopes[0].name !== undefined) {
+      if (this.hasScopes()) {
+        if (this.czConfig && this.czConfig.scopes[0].name !== undefined) {
           const scopePicks = this.czConfig.scopes.map(scope => ({
             label: scope.name as string,
             description: ''
