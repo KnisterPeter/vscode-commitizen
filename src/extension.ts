@@ -4,7 +4,12 @@ import * as sander from 'sander';
 import * as vscode from 'vscode';
 import * as wrap from 'wrap-ansi';
 
+let channel: vscode.OutputChannel;
+
 export async function activate(context: vscode.ExtensionContext): Promise<void> {
+  channel = vscode.window.createOutputChannel('commitizen');
+  channel.appendLine('Commitizen support started');
+
   const czConfig = await readCzConfig();
 
   context.subscriptions.push(vscode.commands.registerCommand('vscode-commitizen.commit', async () => {
@@ -34,17 +39,33 @@ interface CzConfig {
 }
 
 async function readCzConfig(): Promise<CzConfig|undefined> {
-  if (vscode.workspace.rootPath) {
-    const pkg = JSON.parse(await sander.readFile(join(vscode.workspace.rootPath, 'package.json')));
-    let configPath = join(vscode.workspace.rootPath, '.cz-config.js');
-    if (pkg.config && pkg.config['cz-customizable'] && pkg.config['cz-customizable'].config) {
-      configPath = join(vscode.workspace.rootPath, pkg.config['cz-customizable'].config);
-    }
-    if (await sander.exists(configPath)) {
-      return require(configPath) as CzConfig;
-    }
+  const pkg = await readPackageJson();
+  if (!pkg) {
+    return undefined;
   }
-  return undefined;
+  let configPath = join(vscode.workspace.rootPath, '.cz-config.js');
+  if (hasCzConfig(pkg)) {
+    configPath = join(vscode.workspace.rootPath, pkg.config['cz-customizable'].config);
+  }
+  if (!await sander.exists(configPath)) {
+    return undefined;
+  }
+  return require(configPath) as CzConfig;
+}
+
+async function readPackageJson(): Promise<Object|undefined> {
+  if (!vscode.workspace.rootPath) {
+    return undefined;
+  }
+  const pkgPath = join(vscode.workspace.rootPath, 'package.json');
+  if (!await sander.exists(pkgPath)) {
+    return undefined;
+  }
+  return JSON.parse(await sander.readFile(pkgPath));
+}
+
+function hasCzConfig(pkg: any): pkg is { config: { 'cz-customizable': { config: string } } } {
+  return pkg.config && pkg.config['cz-customizable'] && pkg.config['cz-customizable'].config;
 }
 
 async function askOneOf(question: string, picks: vscode.QuickPickItem[],
@@ -72,14 +93,12 @@ async function ask(question: string, save: (input: string) => void,
   if (validate) {
     options.validateInput = validate;
   }
-  return vscode.window.showInputBox(options)
-    .then(input => {
-      if (input === undefined) {
-        return false;
-      }
-      save(input);
-      return true;
-    });
+  const input = await vscode.window.showInputBox(options);
+  if (input === undefined) {
+    return false;
+  }
+  save(input);
+  return true;
 }
 
 const DEFAULT_TYPES = [
@@ -126,10 +145,8 @@ const DEFAULT_TYPES = [
 ];
 
 async function commit(cwd: string, message: string): Promise<void> {
-  return execa('git', ['commit', '-m', message], {cwd})
-    .then(() => {
-      //
-    });
+  channel.appendLine(`About to commit '${message}'`);
+  await execa('git', ['commit', '-m', message], {cwd});
 }
 
 class ConventionalCommitMessage {
