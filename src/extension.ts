@@ -177,15 +177,15 @@ class ConventionalCommitMessage {
     }
   }
 
-  private hasScopes(): boolean {
-    return Boolean(this.czConfig && (!this.czConfig.allowCustomScopes ||
-      this.czConfig.scopes && this.czConfig.scopes.length === 0));
+  private static hasScopes(czConfig: CzConfig|undefined): czConfig is CzConfig {
+    return Boolean(czConfig && (!czConfig.allowCustomScopes ||
+      czConfig.scopes && czConfig.scopes.length === 0));
   }
 
   public async getScope(): Promise<void> {
     if (this.next) {
-      if (this.hasScopes()) {
-        if (this.czConfig && this.czConfig.scopes[0].name !== undefined) {
+      if (ConventionalCommitMessage.hasScopes(this.czConfig)) {
+        if (this.czConfig.scopes && this.czConfig.scopes[0].name !== undefined) {
           const scopePicks = this.czConfig.scopes.map(scope => ({
             label: scope.name as string,
             description: ''
