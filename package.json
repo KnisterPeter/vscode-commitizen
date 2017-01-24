@@ -45,7 +45,7 @@
   "devDependencies": {
     "@knisterpeter/standard-tslint": "^1.0.3",
     "@types/mocha": "^2.2.32",
-    "@types/node": "^6.0.40",
+    "@types/node": "^7.0.4",
     "@types/wrap-ansi": "2.0.14",
     "conventional-changelog-lint": "1.1.0",
     "cz-customizable": "4.0.0",
