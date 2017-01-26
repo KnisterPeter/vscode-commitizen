@@ -152,7 +152,7 @@ async function commit(cwd: string, message: string): Promise<void> {
 class ConventionalCommitMessage {
 
   private czConfig: CzConfig|undefined;
-  private next: boolean = true;
+  private next = true;
 
   private type: string;
   private scope: string|undefined;
