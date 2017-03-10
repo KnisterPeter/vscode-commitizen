@@ -185,9 +185,9 @@ class ConventionalCommitMessage {
   public async getScope(): Promise<void> {
     if (this.next) {
       if (ConventionalCommitMessage.hasScopes(this.czConfig)) {
-        if (this.czConfig.scopes && this.czConfig.scopes[0].name !== undefined) {
+        if (this.czConfig.scopes && this.czConfig.scopes[0] !== undefined) {
           const scopePicks = this.czConfig.scopes.map(scope => ({
-            label: scope.name as string,
+            label: scope.name || scope as string,
             description: ''
           }));
           this.next = await askOneOf('Denote the SCOPE of this change', scopePicks, pick => this.scope = pick.label);
