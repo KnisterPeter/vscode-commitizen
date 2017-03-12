@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.6"></a>
+## [0.3.6](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.3.5...v0.3.6) (2017-03-12)
+
+
+### Bug Fixes
+
+* **package:** update execa to version 0.5.1 ([e0a71a8](https://github.com/KnisterPeter/vscode-commitizen/commit/e0a71a8))
+* **package:** update execa to version 0.6.0 ([6883734](https://github.com/KnisterPeter/vscode-commitizen/commit/6883734))
+* support plain string scopes ([7e0ad50](https://github.com/KnisterPeter/vscode-commitizen/commit/7e0ad50))
+* update dependencies ([cd7c487](https://github.com/KnisterPeter/vscode-commitizen/commit/cd7c487))
+* update standard-linter config ([d678d02](https://github.com/KnisterPeter/vscode-commitizen/commit/d678d02))
+
+
+
 <a name="0.3.5"></a>
 ## [0.3.5](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.3.4...v0.3.5) (2016-12-05)
 
