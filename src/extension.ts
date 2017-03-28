@@ -21,7 +21,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
     await ccm.getBreaking();
     await ccm.getCloses();
     if (ccm.complete) {
-      commit(vscode.workspace.rootPath, ccm.message);
+      commit(vscode.workspace.rootPath, ccm.message.trim());
     }
   }));
 }
@@ -146,7 +146,13 @@ const DEFAULT_TYPES = [
 
 async function commit(cwd: string, message: string): Promise<void> {
   channel.appendLine(`About to commit '${message}'`);
-  await execa('git', ['commit', '-m', message], {cwd});
+  try {
+    await execa('git', ['commit', '-m', message], {cwd});
+  } catch (e) {
+    vscode.window.showErrorMessage(e.message);
+    channel.appendLine(e.message);
+    channel.appendLine(e.stack);
+  }
 }
 
 class ConventionalCommitMessage {
@@ -237,7 +243,7 @@ class ConventionalCommitMessage {
 
   public get message(): string {
     return this.type +
-      (this.scope ? `(${this.scope})` : '') +
+      (typeof this.scope === 'string' ? `(${this.scope})` : '') +
       `: ${this.subject}\n\n${this.body}\n\n` +
       (this.breaking ? `BREAKING CHANGE: ${this.breaking}\n` : '') +
       (this.closes ? `Closes ${this.closes}` : '');
