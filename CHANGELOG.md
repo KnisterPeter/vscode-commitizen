@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.7"></a>
+## [0.3.7](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.3.6...v0.3.7) (2017-03-28)
+
+
+### Bug Fixes
+
+* **package:** update execa to version 0.6.1 ([fcd8049](https://github.com/KnisterPeter/vscode-commitizen/commit/fcd8049))
+* **package:** update execa to version 0.6.2 ([3a3a27c](https://github.com/KnisterPeter/vscode-commitizen/commit/3a3a27c))
+* **package:** update execa to version 0.6.3 ([b68fd58](https://github.com/KnisterPeter/vscode-commitizen/commit/b68fd58))
+* notify user about error ([541bb8e](https://github.com/KnisterPeter/vscode-commitizen/commit/541bb8e)), closes [#25](https://github.com/KnisterPeter/vscode-commitizen/issues/25)
+
+
+
 <a name="0.3.6"></a>
 ## [0.3.6](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.3.5...v0.3.6) (2017-03-12)
 
