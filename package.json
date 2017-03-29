@@ -52,7 +52,7 @@
     "husky": "^0.13.2",
     "mocha": "^3.2.0",
     "standard-version": "^4.0.0",
-    "tslint": "^4.5.1",
+    "tslint": "^5.0.0",
     "typescript": "^2.2.1",
     "vscode": "^1.1.0"
   },
