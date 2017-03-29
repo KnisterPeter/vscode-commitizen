@@ -196,7 +196,8 @@ class ConventionalCommitMessage {
             label: scope.name || scope as string,
             description: ''
           }));
-          this.next = await askOneOf('Denote the SCOPE of this change', scopePicks, pick => this.scope = pick.label);
+          this.next = await askOneOf('Denote the SCOPE of this change', scopePicks,
+            pick => this.scope = pick.label || undefined);
         }
       } else {
         this.next = await ask('Denote the SCOPE of this change (optional)', input => this.scope = input);
