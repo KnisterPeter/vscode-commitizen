@@ -221,7 +221,7 @@ class ConventionalCommitMessage {
   public async getBody(): Promise<void> {
     if (this.next) {
       this.next = await ask('Provide a LONGER description of the change (optional). Use "|" to break new line',
-        input => this.body = wrap(input.replace('|', '\n'), 72, {hard: true}));
+        input => this.body = wrap(input.split('|').join('\n'), 72, {hard: true}));
     }
   }
 
