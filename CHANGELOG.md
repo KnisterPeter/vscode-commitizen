@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.9"></a>
+## [0.3.9](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.3.8...v0.3.9) (2017-04-05)
+
+
+### Bug Fixes
+
+* allow multiple pipes to split ([0d62ef9](https://github.com/KnisterPeter/vscode-commitizen/commit/0d62ef9)), closes [#29](https://github.com/KnisterPeter/vscode-commitizen/issues/29)
+
+
+
 <a name="0.3.8"></a>
 ## [0.3.8](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.3.7...v0.3.8) (2017-03-29)
 
