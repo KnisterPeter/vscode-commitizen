@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.10"></a>
+## [0.3.10](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.3.9...v0.3.10) (2017-04-12)
+
+
+### Bug Fixes
+
+* do not add empty parenthesis if no scope given ([11a7e13](https://github.com/KnisterPeter/vscode-commitizen/commit/11a7e13))
+
+
+
 <a name="0.3.9"></a>
 ## [0.3.9](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.3.8...v0.3.9) (2017-04-05)
 
