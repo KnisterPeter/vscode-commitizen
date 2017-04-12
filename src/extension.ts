@@ -244,7 +244,7 @@ class ConventionalCommitMessage {
 
   public get message(): string {
     return this.type +
-      (typeof this.scope === 'string' ? `(${this.scope})` : '') +
+      (typeof this.scope === 'string' && this.scope ? `(${this.scope})` : '') +
       `: ${this.subject}\n\n${this.body}\n\n` +
       (this.breaking ? `BREAKING CHANGE: ${this.breaking}\n` : '') +
       (this.closes ? `Closes ${this.closes}` : '');
