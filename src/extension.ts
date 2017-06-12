@@ -243,6 +243,7 @@ class ConventionalCommitMessage {
   }
 
   public get message(): string {
+    // tslint:disable-next-line prefer-template
     return this.type +
       (typeof this.scope === 'string' && this.scope ? `(${this.scope})` : '') +
       `: ${this.subject}\n\n${this.body}\n\n` +
