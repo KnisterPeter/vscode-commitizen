@@ -57,9 +57,9 @@
     "vscode": "^1.1.0"
   },
   "dependencies": {
-    "execa": "0.7.0",
-    "sander": "0.6.0",
-    "wrap-ansi": "3.0.1"
+    "execa": "^0.7.0",
+    "sander": "^0.6.0",
+    "wrap-ansi": "^3.0.1"
   },
   "repository": {
     "type": "git",
