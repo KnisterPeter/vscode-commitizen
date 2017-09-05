@@ -20,8 +20,8 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
     await ccm.getBody();
     await ccm.getBreaking();
     await ccm.getCloses();
-    if (ccm.complete) {
-      commit(vscode.workspace.rootPath, ccm.message.trim());
+    if (ccm.complete && vscode.workspace.workspaceFolders) {
+      commit(vscode.workspace.workspaceFolders[0].uri.fsPath, ccm.message.trim());
     }
   }));
 }
@@ -43,9 +43,12 @@ async function readCzConfig(): Promise<CzConfig|undefined> {
   if (!pkg) {
     return undefined;
   }
-  let configPath = join(vscode.workspace.rootPath, '.cz-config.js');
+  if (!vscode.workspace.workspaceFolders) {
+    return undefined;
+  }
+  let configPath = join(vscode.workspace.workspaceFolders[0].uri.fsPath, '.cz-config.js');
   if (hasCzConfig(pkg)) {
-    configPath = join(vscode.workspace.rootPath, pkg.config['cz-customizable'].config);
+    configPath = join(vscode.workspace.workspaceFolders[0].uri.fsPath, pkg.config['cz-customizable'].config);
   }
   if (!await sander.exists(configPath)) {
     return undefined;
@@ -148,6 +151,11 @@ async function commit(cwd: string, message: string): Promise<void> {
   channel.appendLine(`About to commit '${message}'`);
   try {
     await execa('git', ['commit', '-m', message], {cwd});
+    await vscode.commands.executeCommand('git.refresh');
+    const config = vscode.workspace.getConfiguration('commitizen');
+    if (config.get<boolean>('autoSync') === true) {
+      await vscode.commands.executeCommand('git.sync');
+    }
   } catch (e) {
     vscode.window.showErrorMessage(e.message);
     channel.appendLine(e.message);
