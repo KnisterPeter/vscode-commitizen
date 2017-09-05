@@ -5,7 +5,7 @@
   "version": "0.3.10",
   "publisher": "KnisterPeter",
   "engines": {
-    "vscode": "^1.7.0"
+    "vscode": "^1.15.0"
   },
   "categories": [
     "Other"
@@ -22,6 +22,16 @@
   ],
   "main": "./out/src/extension",
   "contributes": {
+    "configuration": {
+      "title": "Commitizen configuration",
+      "properties": {
+        "commitizen.autoSync": {
+          "type": "boolean",
+          "default": false,
+          "description": "Set to true to automatically sync commit with git (push and pull)."
+        }
+      }
+    },
     "commands": [
       {
         "command": "vscode-commitizen.commit",
@@ -43,18 +53,18 @@
     "publish-extension": "vsce publish $(node -e \"console.log(require('./package.json').version)\")"
   },
   "devDependencies": {
-    "@knisterpeter/standard-tslint": "^1.3.0",
-    "@types/mocha": "^2.2.40",
-    "@types/node": "^8.0.0",
+    "@knisterpeter/standard-tslint": "^1.6.0",
+    "@types/mocha": "^2.2.42",
+    "@types/node": "^8.0.26",
     "@types/wrap-ansi": "^2.0.14",
-    "conventional-changelog-lint": "^2.0.0",
-    "cz-customizable": "^5.0.0",
-    "husky": "^0.14.0",
-    "mocha": "^3.2.0",
-    "standard-version": "^4.0.0",
-    "tslint": "^5.0.0",
-    "typescript": "^2.2.1",
-    "vscode": "^1.1.0"
+    "conventional-changelog-lint": "^2.1.1",
+    "cz-customizable": "^5.2.0",
+    "husky": "^0.14.3",
+    "mocha": "^3.5.0",
+    "standard-version": "^4.2.0",
+    "tslint": "^5.7.0",
+    "typescript": "^2.5.2",
+    "vscode": "^1.1.5"
   },
   "dependencies": {
     "execa": "^0.8.0",
