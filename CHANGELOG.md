@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.3.10...v0.4.0) (2017-09-05)
+
+
+### Bug Fixes
+
+* **package:** update execa to version 0.7.0 ([30b2170](https://github.com/KnisterPeter/vscode-commitizen/commit/30b2170))
+* **package:** update execa to version 0.8.0 ([d917bea](https://github.com/KnisterPeter/vscode-commitizen/commit/d917bea))
+* **package:** update wrap-ansi to version 3.0.0 ([493f227](https://github.com/KnisterPeter/vscode-commitizen/commit/493f227))
+
+
+### Features
+
+* add autoSync feature ([87d3a71](https://github.com/KnisterPeter/vscode-commitizen/commit/87d3a71)), closes [#39](https://github.com/KnisterPeter/vscode-commitizen/issues/39)
+
+
+
 <a name="0.3.10"></a>
 ## [0.3.10](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.3.9...v0.3.10) (2017-04-12)
 
