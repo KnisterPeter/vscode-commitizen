@@ -1,7 +1,14 @@
 sudo: false
 language: node_js
 node_js:
-- '6'
+- '7'
+os:
+  # - osx # still too slow
+  - linux
+addons:
+  apt:
+    packages:
+      - libsecret-1-dev
 matrix:
   fast_finish: true
 branches:
