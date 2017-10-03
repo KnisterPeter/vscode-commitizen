@@ -60,7 +60,7 @@
     "conventional-changelog-lint": "^2.1.1",
     "cz-customizable": "^5.2.0",
     "husky": "^0.14.3",
-    "mocha": "^3.5.0",
+    "mocha": "^4.0.0",
     "standard-version": "^4.2.0",
     "tslint": "^5.7.0",
     "typescript": "^2.5.2",
