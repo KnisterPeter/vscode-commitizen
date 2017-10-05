@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.4.0...v0.5.0) (2017-10-05)
+
+
+### Features
+
+* add output after commit ([19c7505](https://github.com/KnisterPeter/vscode-commitizen/commit/19c7505)), closes [#42](https://github.com/KnisterPeter/vscode-commitizen/issues/42)
+* allow to override subject length ([a8557b8](https://github.com/KnisterPeter/vscode-commitizen/commit/a8557b8)), closes [#41](https://github.com/KnisterPeter/vscode-commitizen/issues/41)
+
+
+
 <a name="0.4.0"></a>
 # [0.4.0](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.3.10...v0.4.0) (2017-09-05)
 
