@@ -9,6 +9,7 @@ let channel: vscode.OutputChannel;
 interface Configuration {
   autoSync: boolean;
   subjectLength: number;
+  showOutputChannel: 'off' | 'always' | 'onError';
 }
 
 function getConfiguration(): Configuration {
@@ -17,8 +18,6 @@ function getConfiguration(): Configuration {
 }
 
 export async function activate(context: vscode.ExtensionContext): Promise<void> {
-
-  console.log(getConfiguration());
   channel = vscode.window.createOutputChannel('commitizen');
   channel.appendLine('Commitizen support started');
 
@@ -162,16 +161,31 @@ const DEFAULT_TYPES = [
 async function commit(cwd: string, message: string): Promise<void> {
   channel.appendLine(`About to commit '${message}'`);
   try {
-    await execa('git', ['commit', '-m', message], {cwd});
+    const result = await execa('git', ['commit', '-m', message], {cwd});
     await vscode.commands.executeCommand('git.refresh');
     if (getConfiguration().autoSync) {
       await vscode.commands.executeCommand('git.sync');
+    }
+    if (hasOutput(result)) {
+      result.stdout.split('\n').forEach(line => channel.appendLine(line));
+      if (shouldShowOutput(result)) {
+        channel.show();
+      }
     }
   } catch (e) {
     vscode.window.showErrorMessage(e.message);
     channel.appendLine(e.message);
     channel.appendLine(e.stack);
   }
+}
+
+function hasOutput(result?: {stdout?: string}): boolean {
+  return Boolean(result && result.stdout);
+}
+
+function shouldShowOutput(result: {code: number}): boolean {
+  return getConfiguration().showOutputChannel === 'always'
+    || getConfiguration().showOutputChannel === 'onError' && result.code > 0;
 }
 
 class ConventionalCommitMessage {
