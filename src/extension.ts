@@ -6,7 +6,19 @@ import * as wrap from 'wrap-ansi';
 
 let channel: vscode.OutputChannel;
 
+interface Configuration {
+  autoSync: boolean;
+  subjectLength: number;
+}
+
+function getConfiguration(): Configuration {
+  const config = vscode.workspace.getConfiguration().get<Configuration>('commitizen');
+  return config!;
+}
+
 export async function activate(context: vscode.ExtensionContext): Promise<void> {
+
+  console.log(getConfiguration());
   channel = vscode.window.createOutputChannel('commitizen');
   channel.appendLine('Commitizen support started');
 
@@ -152,8 +164,7 @@ async function commit(cwd: string, message: string): Promise<void> {
   try {
     await execa('git', ['commit', '-m', message], {cwd});
     await vscode.commands.executeCommand('git.refresh');
-    const config = vscode.workspace.getConfiguration('commitizen');
-    if (config.get<boolean>('autoSync') === true) {
+    if (getConfiguration().autoSync) {
       await vscode.commands.executeCommand('git.sync');
     }
   } catch (e) {
@@ -215,9 +226,10 @@ class ConventionalCommitMessage {
 
   public async getSubject(): Promise<void> {
     if (this.next) {
+      const maxLenght = getConfiguration().subjectLength;
       const validator = (input: string) => {
-        if (input.length === 0 || input.length > 50) {
-          return 'Subject is required and must be less than 50 characters';
+        if (input.length === 0 || input.length > maxLenght) {
+          return `Subject is required and must be less than ${maxLenght} characters`;
         }
         return '';
       };
