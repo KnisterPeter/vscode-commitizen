@@ -29,6 +29,11 @@
           "type": "boolean",
           "default": false,
           "description": "Set to true to automatically sync commit with git (push and pull)."
+        },
+        "commitizen.subjectLength": {
+          "type": "number",
+          "default": 50,
+          "description": "Override the allowed commit message subject length."
         }
       }
     },
