@@ -71,7 +71,7 @@
     "@knisterpeter/standard-tslint": "^1.6.0",
     "@types/mocha": "^5.0.0",
     "@types/node": "^9.3.0",
-    "@types/wrap-ansi": "^2.0.14",
+    "@types/wrap-ansi": "^3.0.0",
     "conventional-changelog-lint": "^2.1.1",
     "cz-customizable": "^5.2.0",
     "husky": "^0.14.3",
