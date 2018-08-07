@@ -1,5 +1,5 @@
 import * as execa from 'execa';
-import {join} from 'path';
+import { join } from 'path';
 import * as sander from 'sander';
 import * as vscode from 'vscode';
 import * as wrap from 'wrap-ansi';
@@ -68,10 +68,10 @@ async function readCzConfig(): Promise<CzConfig|undefined> {
 }
 
 async function readPackageJson(): Promise<Object|undefined> {
-  if (!vscode.workspace.rootPath) {
+  if (!vscode.workspace.workspaceFolders || vscode.workspace.workspaceFolders.length === 0) {
     return undefined;
   }
-  const pkgPath = join(vscode.workspace.rootPath, 'package.json');
+  const pkgPath = join(vscode.workspace.workspaceFolders[0].uri.fsPath, 'package.json');
   if (!await sander.exists(pkgPath)) {
     return undefined;
   }
