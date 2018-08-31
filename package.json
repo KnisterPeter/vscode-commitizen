@@ -84,7 +84,7 @@
   "dependencies": {
     "execa": "^0.10.0",
     "sander": "^0.6.0",
-    "wrap-ansi": "^3.0.1"
+    "wrap-ansi": "^4.0.0"
   },
   "repository": {
     "type": "git",
