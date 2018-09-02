@@ -1,7 +1,7 @@
 sudo: false
 language: node_js
 node_js:
-- '7'
+- '8'
 os:
   # - osx # still too slow
   - linux
@@ -30,8 +30,8 @@ before_install:
       sleep 3;
     fi
 install:
-  - npm install
-  - npm run vscode:prepublish
-before_script: 'npm run linter'
-script: 'npm run test'
+  - yarn
+  - yarn vscode:prepublish
+before_script: 'yarn linter'
+script: 'yarn test'
 #after_script: "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
