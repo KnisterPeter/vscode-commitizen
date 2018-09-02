@@ -1,4 +1,4 @@
-// tslint:disable-next-line:no-var-requires
+// tslint:disable-next-line:no-var-requires no-implicit-dependencies
 const testRunner = require('vscode/lib/testrunner');
 
 testRunner.configure({

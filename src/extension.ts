@@ -1,6 +1,7 @@
 import * as execa from 'execa';
-import {join} from 'path';
+import { join } from 'path';
 import * as sander from 'sander';
+// tslint:disable-next-line:no-implicit-dependencies
 import * as vscode from 'vscode';
 import * as wrap from 'wrap-ansi';
 
@@ -32,7 +33,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
     await ccm.getBreaking();
     await ccm.getCloses();
     if (ccm.complete && vscode.workspace.workspaceFolders) {
-      commit(vscode.workspace.workspaceFolders[0].uri.fsPath, ccm.message.trim());
+      await commit(vscode.workspace.workspaceFolders[0].uri.fsPath, ccm.message.trim());
     }
   }));
 }
@@ -67,11 +68,11 @@ async function readCzConfig(): Promise<CzConfig|undefined> {
   return require(configPath) as CzConfig;
 }
 
-async function readPackageJson(): Promise<Object|undefined> {
-  if (!vscode.workspace.rootPath) {
+async function readPackageJson(): Promise<object|undefined> {
+  if (!vscode.workspace.workspaceFolders) {
     return undefined;
   }
-  const pkgPath = join(vscode.workspace.rootPath, 'package.json');
+  const pkgPath = join(vscode.workspace.workspaceFolders[0].uri.fsPath, 'package.json');
   if (!await sander.exists(pkgPath)) {
     return undefined;
   }
@@ -190,7 +191,12 @@ function shouldShowOutput(result: {code: number}): boolean {
 
 class ConventionalCommitMessage {
 
-  private czConfig: CzConfig|undefined;
+  private static hasScopes(czConfig: CzConfig|undefined): czConfig is CzConfig {
+    return Boolean(czConfig && (!czConfig.allowCustomScopes ||
+      czConfig.scopes && czConfig.scopes.length === 0));
+  }
+
+  private readonly czConfig: CzConfig|undefined;
   private next = true;
 
   private type: string;
@@ -214,11 +220,6 @@ class ConventionalCommitMessage {
       this.next = await askOneOf('Select the type of change that you\'re committing', typePicks,
         pick => this.type = pick.label);
     }
-  }
-
-  private static hasScopes(czConfig: CzConfig|undefined): czConfig is CzConfig {
-    return Boolean(czConfig && (!czConfig.allowCustomScopes ||
-      czConfig.scopes && czConfig.scopes.length === 0));
   }
 
   public async getScope(): Promise<void> {
