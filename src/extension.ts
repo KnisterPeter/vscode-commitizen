@@ -46,6 +46,15 @@ interface CzConfig {
   scopes: {
     name?: string;
   }[];
+  messages: {
+    type?: string;
+    customScope?: string;
+    scope?: string;
+    subject?: string;
+    body?: string;
+    breaking?: string;
+    footer?: string;
+  };
   allowCustomScopes: boolean;
   allowBreakingChanges: string[];
 }
@@ -159,6 +168,16 @@ const DEFAULT_TYPES = [
   }
 ];
 
+const DEFAULT_MESSAGES = {
+  type: 'Select the type of change that you\'re committing',
+  customScope: 'Denote the SCOPE of this change',
+  scope: 'Denote the SCOPE of this change (optional)',
+  subject: 'Write a SHORT, IMPERATIVE tense description of the change',
+  body: 'Provide a LONGER description of the change (optional). Use "|" to break new line',
+  breaking: 'List any BREAKING CHANGES (optional)',
+  footer: 'List any ISSUES CLOSED by this change (optional). E.g.: #31, #34'
+};
+
 async function commit(cwd: string, message: string): Promise<void> {
   channel.appendLine(`About to commit '${message}'`);
   try {
@@ -196,6 +215,10 @@ class ConventionalCommitMessage {
       czConfig.scopes && czConfig.scopes.length === 0));
   }
 
+  private static hasCustomMessage(czConfig: CzConfig|undefined, messageType: string ): czConfig is CzConfig {
+    return Boolean(czConfig && czConfig.messages && czConfig.hasOwnProperty(messageType));
+  }
+
   private readonly czConfig: CzConfig|undefined;
   private next = true;
 
@@ -217,7 +240,7 @@ class ConventionalCommitMessage {
         label: type.value,
         description: type.name
       }));
-      this.next = await askOneOf('Select the type of change that you\'re committing', typePicks,
+      this.next = await askOneOf(this.inputMessage('type'), typePicks,
         pick => this.type = pick.label);
     }
   }
@@ -230,11 +253,11 @@ class ConventionalCommitMessage {
             label: scope.name || scope as string,
             description: ''
           }));
-          this.next = await askOneOf('Denote the SCOPE of this change', scopePicks,
+          this.next = await askOneOf(this.inputMessage('customScope'), scopePicks,
             pick => this.scope = pick.label || undefined);
         }
       } else {
-        this.next = await ask('Denote the SCOPE of this change (optional)', input => this.scope = input);
+        this.next = await ask(this.inputMessage('scope'), input => this.scope = input);
       }
     }
   }
@@ -248,27 +271,27 @@ class ConventionalCommitMessage {
         }
         return '';
       };
-      this.next = await ask('Write a SHORT, IMPERATIVE tense description of the change',
+      this.next = await ask(this.inputMessage('subject'),
         input => this.subject = input, validator);
     }
   }
 
   public async getBody(): Promise<void> {
     if (this.next) {
-      this.next = await ask('Provide a LONGER description of the change (optional). Use "|" to break new line',
+      this.next = await ask(this.inputMessage('body'),
         input => this.body = wrap(input.split('|').join('\n'), 72, {hard: true}));
     }
   }
 
   public async getBreaking(): Promise<void> {
     if (this.next) {
-      this.next = await ask('List any BREAKING CHANGES (optional)', input => this.breaking = input);
+      this.next = await ask(this.inputMessage('breaking'), input => this.breaking = input);
     }
   }
 
   public async getCloses(): Promise<void> {
     if (this.next) {
-      this.next = await ask('List any ISSUES CLOSED by this change (optional). E.g.: #31, #34',
+      this.next = await ask(this.inputMessage('footer'),
         input => this.closes = input);
     }
   }
@@ -286,4 +309,9 @@ class ConventionalCommitMessage {
       (this.closes ? `Closes ${this.closes}` : '');
   }
 
+  private inputMessage(messageType: string): string {
+    return ConventionalCommitMessage.hasCustomMessage(this.czConfig, messageType)
+      ? this.czConfig.messages[messageType]
+      : DEFAULT_MESSAGES[messageType];
+  }
 }
