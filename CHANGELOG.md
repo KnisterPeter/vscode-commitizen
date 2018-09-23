@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.6.0"></a>
+# [0.6.0](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.5.0...v0.6.0) (2018-09-23)
+
+
+### Bug Fixes
+
+* **deps:** update dependency execa to ^0.11.0 ([061f117](https://github.com/KnisterPeter/vscode-commitizen/commit/061f117))
+* **deps:** update dependency execa to v1 ([f8e0499](https://github.com/KnisterPeter/vscode-commitizen/commit/f8e0499))
+* **package:** update execa to version 0.10.0 ([481ca84](https://github.com/KnisterPeter/vscode-commitizen/commit/481ca84))
+* **package:** update execa to version 0.9.0 ([44721f4](https://github.com/KnisterPeter/vscode-commitizen/commit/44721f4))
+
+
+### Features
+
+* **messages:** add custom messages from cz-config ([a2dc633](https://github.com/KnisterPeter/vscode-commitizen/commit/a2dc633))
+
+
+
 <a name="0.5.0"></a>
 # [0.5.0](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.4.0...v0.5.0) (2017-10-05)
 
