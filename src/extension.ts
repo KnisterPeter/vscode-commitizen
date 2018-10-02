@@ -1,6 +1,7 @@
 import * as execa from 'execa';
 import { join } from 'path';
 import * as sander from 'sander';
+import * as simplegit from 'simple-git/promise';
 // tslint:disable-next-line:no-implicit-dependencies
 import * as vscode from 'vscode';
 import * as wrap from 'wrap-ansi';
@@ -181,6 +182,7 @@ const DEFAULT_MESSAGES = {
 async function commit(cwd: string, message: string): Promise<void> {
   channel.appendLine(`About to commit '${message}'`);
   try {
+    await conditionallyStageFiles(cwd);
     const result = await execa('git', ['commit', '-m', message], {cwd});
     await vscode.commands.executeCommand('git.refresh');
     if (getConfiguration().autoSync) {
@@ -206,6 +208,23 @@ function hasOutput(result?: {stdout?: string}): boolean {
 function shouldShowOutput(result: {code: number}): boolean {
   return getConfiguration().showOutputChannel === 'always'
     || getConfiguration().showOutputChannel === 'onError' && result.code > 0;
+}
+
+async function conditionallyStageFiles(cwd: string): Promise<void> {
+  const hasSmartCommitEnabled = vscode.workspace.getConfiguration('git')
+    .get<boolean>('enableSmartCommit') === true;
+
+  if (hasSmartCommitEnabled && await hasNoStagedFiles(cwd)) {
+    channel.appendLine('Staging all files (enableSmartCommit enabled with nothing staged)');
+    await execa('git', ['add', '-A', '--', '.'], {cwd});
+  }
+}
+
+async function hasNoStagedFiles(cwd: string): Promise<boolean> {
+  const git = simplegit();
+  await git.cwd(cwd);
+  const status = await git.status();
+  return status.files.every((file: {index: string}) => !file.index.trim() || file.index === '?');
 }
 
 class ConventionalCommitMessage {
