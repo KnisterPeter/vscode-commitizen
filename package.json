@@ -83,6 +83,7 @@
   "dependencies": {
     "execa": "^1.0.0",
     "sander": "^0.6.0",
+    "simple-git": "1.104.0",
     "wrap-ansi": "^3.0.1"
   },
   "repository": {
