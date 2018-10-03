@@ -215,17 +215,17 @@ async function conditionallyStageFiles(cwd: string): Promise<void> {
   const hasSmartCommitEnabled = vscode.workspace.getConfiguration('git')
     .get<boolean>('enableSmartCommit') === true;
 
-  if (hasSmartCommitEnabled && await hasNoStagedFiles(cwd)) {
+  if (hasSmartCommitEnabled && !(await hasStagedFiles(cwd))) {
     channel.appendLine('Staging all files (enableSmartCommit enabled with nothing staged)');
     await execa('git', ['add', '-A', '--', '.'], {cwd});
   }
 }
 
-async function hasNoStagedFiles(cwd: string): Promise<boolean> {
+async function hasStagedFiles(cwd: string): Promise<boolean> {
   const git = simplegit();
   await git.cwd(cwd);
   const status = await git.status();
-  return status.files.every((file: {index: string}) => !file.index.trim() || file.index === '?');
+  return status.files.some((file: {index: string}) => !!file.index.trim() && file.index !== '?');
 }
 
 class ConventionalCommitMessage {
