@@ -217,7 +217,7 @@ async function conditionallyStageFiles(cwd: string): Promise<void> {
 
   if (hasSmartCommitEnabled && !(await hasStagedFiles(cwd))) {
     channel.appendLine('Staging all files (enableSmartCommit enabled with nothing staged)');
-    await execa('git', ['add', '-A', '--', '.'], {cwd});
+    await vscode.commands.executeCommand('git.stageAll');
   }
 }
 
