@@ -1,7 +1,6 @@
 import * as execa from 'execa';
 import { join } from 'path';
 import * as sander from 'sander';
-import * as simplegit from 'simple-git/promise';
 // tslint:disable-next-line:no-implicit-dependencies
 import * as vscode from 'vscode';
 import * as wrap from 'wrap-ansi';
@@ -221,10 +220,8 @@ async function conditionallyStageFiles(cwd: string): Promise<void> {
 }
 
 async function hasStagedFiles(cwd: string): Promise<boolean> {
-  const git = simplegit();
-  await git.cwd(cwd);
-  const status = await git.status();
-  return status.files.some((file: {index: string}) => !!file.index.trim() && file.index !== '?');
+  const result = await execa('git', ['diff', '--name-only', '--cached'], {cwd});
+  return hasOutput(result);
 }
 
 class ConventionalCommitMessage {
