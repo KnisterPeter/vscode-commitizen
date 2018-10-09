@@ -57,6 +57,7 @@ interface CzConfig {
   };
   allowCustomScopes: boolean;
   allowBreakingChanges: string[];
+  footerPrefix: string;
 }
 
 async function readCzConfig(): Promise<CzConfig|undefined> {
@@ -227,7 +228,7 @@ class ConventionalCommitMessage {
   private subject: string;
   private body: string|undefined;
   private breaking: string|undefined;
-  private closes: string|undefined;
+  private footer: string|undefined;
 
   constructor(czConfig: CzConfig|undefined) {
     this.czConfig = czConfig;
@@ -289,10 +290,10 @@ class ConventionalCommitMessage {
     }
   }
 
-  public async getCloses(): Promise<void> {
+  public async getFooter(): Promise<void> {
     if (this.next) {
       this.next = await ask(this.inputMessage('footer'),
-        input => this.closes = input);
+        input => this.footer = input);
     }
   }
 
@@ -306,7 +307,15 @@ class ConventionalCommitMessage {
       (typeof this.scope === 'string' && this.scope ? `(${this.scope})` : '') +
       `: ${this.subject}\n\n${this.body}\n\n` +
       (this.breaking ? `BREAKING CHANGE: ${this.breaking}\n` : '') +
-      (this.closes ? `Closes ${this.closes}` : '');
+      this.messageFooter();
+  }
+
+  private messageFooter(): string {
+    return this.footer
+      ? `${this.czConfig && this.czConfig.footerPrefix ? this.czConfig.footerPrefix : 'Closes '}${
+          this.footer
+        }`
+      : '';
   }
 
   private inputMessage(messageType: string): string {
