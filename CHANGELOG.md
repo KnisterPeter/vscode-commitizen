@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.7.0"></a>
+# [0.7.0](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.6.0...v0.7.0) (2018-10-09)
+
+
+### Features
+
+* **commit:** Auto-stage with enableSmartCommit ([1db4fd9](https://github.com/KnisterPeter/vscode-commitizen/commit/1db4fd9)), closes [#80](https://github.com/KnisterPeter/vscode-commitizen/issues/80)
+
+
+
 <a name="0.6.0"></a>
 # [0.6.0](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.5.0...v0.6.0) (2018-09-23)
 
