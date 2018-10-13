@@ -31,7 +31,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
     await ccm.getSubject();
     await ccm.getBody();
     await ccm.getBreaking();
-    await ccm.getCloses();
+    await ccm.getFooter();
     if (ccm.complete && vscode.workspace.workspaceFolders) {
       await commit(vscode.workspace.workspaceFolders[0].uri.fsPath, ccm.message.trim());
     }
@@ -57,6 +57,7 @@ interface CzConfig {
   };
   allowCustomScopes: boolean;
   allowBreakingChanges: string[];
+  footerPrefix: string;
 }
 
 async function readCzConfig(): Promise<CzConfig|undefined> {
@@ -93,7 +94,7 @@ function hasCzConfig(pkg: any): pkg is { config: { 'cz-customizable': { config: 
 }
 
 async function askOneOf(question: string, picks: vscode.QuickPickItem[],
-    save: (pick: vscode.QuickPickItem) => void): Promise<boolean> {
+  save: (pick: vscode.QuickPickItem) => void): Promise<boolean> {
   const pickOptions: vscode.QuickPickOptions = {
     placeHolder: question,
     ignoreFocusOut: true,
@@ -109,7 +110,7 @@ async function askOneOf(question: string, picks: vscode.QuickPickItem[],
 }
 
 async function ask(question: string, save: (input: string) => void,
-    validate?: (input: string) => string): Promise<boolean> {
+  validate?: (input: string) => string): Promise<boolean> {
   const options: vscode.InputBoxOptions = {
     placeHolder: question,
     ignoreFocusOut: true
@@ -243,7 +244,7 @@ class ConventionalCommitMessage {
   private subject: string;
   private body: string|undefined;
   private breaking: string|undefined;
-  private closes: string|undefined;
+  private footer: string|undefined;
 
   constructor(czConfig: CzConfig|undefined) {
     this.czConfig = czConfig;
@@ -305,10 +306,10 @@ class ConventionalCommitMessage {
     }
   }
 
-  public async getCloses(): Promise<void> {
+  public async getFooter(): Promise<void> {
     if (this.next) {
       this.next = await ask(this.inputMessage('footer'),
-        input => this.closes = input);
+        input => this.footer = input);
     }
   }
 
@@ -322,7 +323,15 @@ class ConventionalCommitMessage {
       (typeof this.scope === 'string' && this.scope ? `(${this.scope})` : '') +
       `: ${this.subject}\n\n${this.body}\n\n` +
       (this.breaking ? `BREAKING CHANGE: ${this.breaking}\n` : '') +
-      (this.closes ? `Closes ${this.closes}` : '');
+      this.messageFooter();
+  }
+
+  private messageFooter(): string {
+    return this.footer
+      ? `${this.czConfig && this.czConfig.footerPrefix ? this.czConfig.footerPrefix : 'Closes '}${
+      this.footer
+      }`
+      : '';
   }
 
   private inputMessage(messageType: string): string {
