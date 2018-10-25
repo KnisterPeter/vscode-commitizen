@@ -94,7 +94,7 @@ function hasCzConfig(pkg: any): pkg is { config: { 'cz-customizable': { config: 
 }
 
 async function askOneOf(question: string, picks: vscode.QuickPickItem[],
-  save: (pick: vscode.QuickPickItem) => void): Promise<boolean> {
+  save: (pick: vscode.QuickPickItem) => void, customLabel?: string, customQuestion?: string): Promise<boolean> {
   const pickOptions: vscode.QuickPickOptions = {
     placeHolder: question,
     ignoreFocusOut: true,
@@ -102,6 +102,13 @@ async function askOneOf(question: string, picks: vscode.QuickPickItem[],
     matchOnDetail: true
   };
   const pick = await vscode.window.showQuickPick(picks, pickOptions);
+  if (pick && pick.label === customLabel && !!customQuestion) {
+    const next = await ask(customQuestion || "", input => {
+      save({label: input, description: ''})
+      return true
+    });
+    return next;
+  }
   if (pick === undefined) {
     return false;
   }
@@ -172,6 +179,7 @@ const DEFAULT_TYPES = [
 const DEFAULT_MESSAGES = {
   type: 'Select the type of change that you\'re committing',
   customScope: 'Denote the SCOPE of this change',
+  customScopeEntry: 'Custom scope...',
   scope: 'Denote the SCOPE of this change (optional)',
   subject: 'Write a SHORT, IMPERATIVE tense description of the change',
   body: 'Provide a LONGER description of the change (optional). Use "|" to break new line',
@@ -228,8 +236,7 @@ async function hasStagedFiles(cwd: string): Promise<boolean> {
 class ConventionalCommitMessage {
 
   private static hasScopes(czConfig: CzConfig|undefined): czConfig is CzConfig {
-    return Boolean(czConfig && (!czConfig.allowCustomScopes ||
-      czConfig.scopes && czConfig.scopes.length === 0));
+    return Boolean(czConfig && czConfig.scopes && czConfig.scopes.length !== 0);
   }
 
   private static hasCustomMessage(czConfig: CzConfig|undefined, messageType: string ): czConfig is CzConfig {
@@ -270,8 +277,17 @@ class ConventionalCommitMessage {
             label: scope.name || scope as string,
             description: ''
           }));
+          if (this.czConfig.allowCustomScopes) {
+            scopePicks.push({
+              label: this.inputMessage('customScopeEntry'),
+              description: ''
+            })
+          }
           this.next = await askOneOf(this.inputMessage('customScope'), scopePicks,
-            pick => this.scope = pick.label || undefined);
+            pick => {
+              this.scope = pick.label || undefined
+            }, 
+            this.inputMessage('customScopeEntry'), this.inputMessage('customScope'));
         }
       } else {
         this.next = await ask(this.inputMessage('scope'), input => this.scope = input);
