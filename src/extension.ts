@@ -103,9 +103,9 @@ async function askOneOf(question: string, picks: vscode.QuickPickItem[],
   };
   const pick = await vscode.window.showQuickPick(picks, pickOptions);
   if (pick && pick.label === customLabel && !!customQuestion) {
-    const next = await ask(customQuestion || "", input => {
-      save({label: input, description: ''})
-      return true
+    const next = await ask(customQuestion || '', input => {
+      save({label: input, description: ''});
+      return true;
     });
     return next;
   }
@@ -281,12 +281,12 @@ class ConventionalCommitMessage {
             scopePicks.push({
               label: this.inputMessage('customScopeEntry'),
               description: ''
-            })
+            });
           }
           this.next = await askOneOf(this.inputMessage('customScope'), scopePicks,
             pick => {
-              this.scope = pick.label || undefined
-            }, 
+              this.scope = pick.label || undefined;
+            },
             this.inputMessage('customScopeEntry'), this.inputMessage('customScope'));
         }
       } else {
