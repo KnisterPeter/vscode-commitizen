@@ -784,10 +784,10 @@ cycle@1.0.x:
   resolved "https://registry.yarnpkg.com/cycle/-/cycle-1.0.3.tgz#21e80b2be8580f98b468f379430662b046c34ad2"
   integrity sha1-IegLK+hYD5i0aPN5QwZisEbDStI=
 
-cz-customizable@5.2.0:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/cz-customizable/-/cz-customizable-5.2.0.tgz#a172a7a24b1972e8f3d6899f3341a5d330e13fe3"
-  integrity sha1-oXKnoksZcujz1omfM0Gl0zDhP+M=
+cz-customizable@5.3.0:
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/cz-customizable/-/cz-customizable-5.3.0.tgz#ef2f2f2cf406c99b9213fbfb047364684566368c"
+  integrity sha512-WBU0cE7Yjk04NS/sd9HrDT4GZNSlu6cZ0DnBXa6o2CnK7x1qqyP5BZ9fTPrlfct9jzGWqk3nmV23sgINqWF9XA==
   dependencies:
     editor "1.0.0"
     find-config "0.3.0"
