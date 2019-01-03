@@ -240,7 +240,7 @@ class ConventionalCommitMessage {
   }
 
   private static hasCustomMessage(czConfig: CzConfig|undefined, messageType: string ): czConfig is CzConfig {
-    return Boolean(czConfig && czConfig.messages && czConfig.hasOwnProperty(messageType));
+    return Boolean(czConfig && czConfig.messages && czConfig.messages.hasOwnProperty(messageType));
   }
 
   private readonly czConfig: CzConfig|undefined;
