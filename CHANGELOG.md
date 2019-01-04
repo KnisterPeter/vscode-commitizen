@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.8.2"></a>
+## [0.8.2](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.8.1...v0.8.2) (2019-01-04)
+
+
+### Bug Fixes
+
+* **messages:** fixes custom messages not loading ([3a423ec](https://github.com/KnisterPeter/vscode-commitizen/commit/3a423ec))
+
+
+
 <a name="0.8.1"></a>
 ## [0.8.1](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.8.0...v0.8.1) (2018-10-26)
 
