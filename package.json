@@ -77,7 +77,7 @@
     "mocha": "6.0.2",
     "standard-version": "5.0.1",
     "tslint": "5.14.0",
-    "typescript": "3.3.3333",
+    "typescript": "3.3.4000",
     "vscode": "1.1.30"
   },
   "dependencies": {
