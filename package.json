@@ -75,7 +75,7 @@
     "cz-customizable": "6.0.0",
     "husky": "2.2.0",
     "mocha": "6.1.4",
-    "standard-version": "5.0.2",
+    "standard-version": "6.0.1",
     "tslint": "5.16.0",
     "typescript": "3.4.5",
     "vscode": "1.1.33"
