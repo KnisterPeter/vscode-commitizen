@@ -61,6 +61,10 @@ interface CzConfig {
 }
 
 async function readCzConfig(): Promise<CzConfig|undefined> {
+  let configPath = join(vscode.workspace.workspaceFolders[0].uri.fsPath, '.cz-config.js');
+  if (await sander.exists(configPath)) {
+    return require(configPath) as CzConfig;
+  } 
   const pkg = await readPackageJson();
   if (!pkg) {
     return undefined;
@@ -68,7 +72,7 @@ async function readCzConfig(): Promise<CzConfig|undefined> {
   if (!vscode.workspace.workspaceFolders) {
     return undefined;
   }
-  let configPath = join(vscode.workspace.workspaceFolders[0].uri.fsPath, '.cz-config.js');
+  configPath = join(vscode.workspace.workspaceFolders[0].uri.fsPath, '.cz-config.js');
   if (hasCzConfig(pkg)) {
     configPath = join(vscode.workspace.workspaceFolders[0].uri.fsPath, pkg.config['cz-customizable'].config);
   }
