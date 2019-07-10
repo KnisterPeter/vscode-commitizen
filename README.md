@@ -18,3 +18,16 @@ This vscode extension adds [commitizen support](https://github.com/commitizen).
 
 To configure this extension follow [cz-customizable](https://github.com/leonardoanalista/cz-customizable) and
 create the required config file. This also read by this extension if configured.
+
+To determine what config to use, the extention will look for a config file in the following places:
+
+1. a ```.cz-config.js``` in the root directory
+2. in ```package.json``` to determine the path to the config file: 
+```
+  "config": {
+    "cz-customizable": {
+      "config": "test.js"
+    }
+  }
+```
+3. use the default config 
