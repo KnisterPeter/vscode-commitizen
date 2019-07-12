@@ -1,6 +1,18 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [0.8.3](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.8.2...v0.8.3) (2019-07-12)
+
+
+### Bug Fixes
+
+* **config:** reads.cz-config.js filein root ([814ebdf](https://github.com/KnisterPeter/vscode-commitizen/commit/814ebdf))
+* **deps:** update dependency execa to v2 ([e7a84f5](https://github.com/KnisterPeter/vscode-commitizen/commit/e7a84f5))
+* **deps:** update dependency wrap-ansi to v5 ([dd7d588](https://github.com/KnisterPeter/vscode-commitizen/commit/dd7d588))
+* **deps:** update dependency wrap-ansi to v6 ([5edbc71](https://github.com/KnisterPeter/vscode-commitizen/commit/5edbc71))
+
+
 
 <a name="0.8.2"></a>
 ## [0.8.2](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.8.1...v0.8.2) (2019-01-04)
