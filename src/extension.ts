@@ -58,6 +58,7 @@ interface CzConfig {
   allowCustomScopes: boolean;
   allowBreakingChanges: string[];
   footerPrefix: string;
+  skipQuestions?: string[];
 }
 
 async function readCzConfig(): Promise<CzConfig|undefined> {
@@ -239,6 +240,10 @@ async function hasStagedFiles(cwd: string): Promise<boolean> {
 
 class ConventionalCommitMessage {
 
+  private static shouldSkip(czConfig: CzConfig|undefined, messageType: string): czConfig is CzConfig {
+    return Boolean(czConfig && czConfig.skipQuestions && czConfig.skipQuestions.includes(messageType));
+  }
+
   private static hasScopes(czConfig: CzConfig|undefined): czConfig is CzConfig {
     return Boolean(czConfig && czConfig.scopes && czConfig.scopes.length !== 0);
   }
@@ -293,7 +298,7 @@ class ConventionalCommitMessage {
             },
             this.inputMessage('customScopeEntry'), this.inputMessage('customScope'));
         }
-      } else {
+      } else if (!ConventionalCommitMessage.shouldSkip(this.czConfig, 'scope')) {
         this.next = await ask(this.inputMessage('scope'), input => this.scope = input);
       }
     }
@@ -314,20 +319,20 @@ class ConventionalCommitMessage {
   }
 
   public async getBody(): Promise<void> {
-    if (this.next) {
+    if (this.next && !ConventionalCommitMessage.shouldSkip(this.czConfig, 'body')) {
       this.next = await ask(this.inputMessage('body'),
         input => this.body = wrap(input.split('|').join('\n'), 72, {hard: true}));
     }
   }
 
   public async getBreaking(): Promise<void> {
-    if (this.next) {
+    if (this.next && !ConventionalCommitMessage.shouldSkip(this.czConfig, 'breaking')) {
       this.next = await ask(this.inputMessage('breaking'), input => this.breaking = input);
     }
   }
 
   public async getFooter(): Promise<void> {
-    if (this.next) {
+    if (this.next && !ConventionalCommitMessage.shouldSkip(this.czConfig, 'footer')) {
       this.next = await ask(this.inputMessage('footer'),
         input => this.footer = input);
     }
