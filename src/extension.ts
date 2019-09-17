@@ -306,10 +306,10 @@ class ConventionalCommitMessage {
 
   public async getSubject(): Promise<void> {
     if (this.next) {
-      const maxLenght = getConfiguration().subjectLength;
+      const maxLength = getConfiguration().subjectLength;
       const validator = (input: string) => {
-        if (input.length === 0 || input.length > maxLenght) {
-          return `Subject is required and must be less than ${maxLenght} characters`;
+        if (input.length === 0 || input.length > maxLength) {
+          return `Subject is required and must be less than ${maxLength} characters`;
         }
         return '';
       };
