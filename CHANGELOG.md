@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.4](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.8.3...v0.8.4) (2019-10-11)
+
+
+### Bug Fixes
+
+* **linter:** Refactor to reduce complexity ([6ab8fd9](https://github.com/KnisterPeter/vscode-commitizen/commit/6ab8fd9))
+
+
+### Features
+
+* **questions:** Skip questions from cz-config ([1214d28](https://github.com/KnisterPeter/vscode-commitizen/commit/1214d28))
+
 ### [0.8.3](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.8.2...v0.8.3) (2019-07-12)
 
 
