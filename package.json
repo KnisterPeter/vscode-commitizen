@@ -81,7 +81,7 @@
     "vscode": "1.1.36"
   },
   "dependencies": {
-    "execa": "^2.0.0",
+    "execa": "^3.0.0",
     "sander": "^0.6.0",
     "wrap-ansi": "^6.0.0"
   },
