@@ -1,6 +1,6 @@
 {
-  "name": "vscode-commitizen",
-  "displayName": "Visual Studio Code Commitizen Support",
+  "name": "vscode-commitizen-emoji",
+  "displayName": "Visual Studio Code Commitizen Support with emoji",
   "description": "commitizen - git commit with conventions",
   "version": "0.8.4",
   "publisher": "KnisterPeter",
@@ -18,7 +18,7 @@
     "conventional-changelog"
   ],
   "activationEvents": [
-    "onCommand:vscode-commitizen.commit"
+    "onCommand:vscode-commitizen-emoji.commit"
   ],
   "main": "./out/src/extension",
   "contributes": {
@@ -49,7 +49,7 @@
     },
     "commands": [
       {
-        "command": "vscode-commitizen.commit",
+        "command": "vscode-commitizen-emoji.commit",
         "title": "conventional commit",
         "category": "Commitizen"
       }
@@ -69,7 +69,7 @@
   "devDependencies": {
     "@knisterpeter/standard-tslint": "1.7.2",
     "@types/mocha": "5.2.7",
-    "@types/node": "10.17.0",
+    "@types/node": "10.14.22",
     "@types/wrap-ansi": "3.0.0",
     "conventional-changelog-lint": "2.1.1",
     "cz-customizable": "6.2.0",
@@ -87,7 +87,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/KnisterPeter/vscode-commitizen.git"
+    "url": "https://github.com/KnisterPeter/vscode-commitizen-emoji.git"
   },
   "author": {
     "name": "Markus Wolf",
@@ -95,9 +95,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/KnisterPeter/vscode-commitizen/issues"
+    "url": "https://github.com/KnisterPeter/vscode-commitizen-emoji/issues"
   },
-  "homepage": "https://github.com/KnisterPeter/vscode-commitizen",
+  "homepage": "https://github.com/KnisterPeter/vscode-commitizen-emoji",
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-customizable"

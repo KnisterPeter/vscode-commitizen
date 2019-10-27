@@ -24,7 +24,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
 
   const czConfig = await readCzConfig();
 
-  context.subscriptions.push(vscode.commands.registerCommand('vscode-commitizen.commit', async() => {
+  context.subscriptions.push(vscode.commands.registerCommand('vscode-commitizen-emoji.commit', async() => {
     const ccm = new ConventionalCommitMessage(czConfig);
     await ccm.getType();
     await ccm.getScope();
@@ -42,6 +42,8 @@ interface CzConfig {
   types: {
     value: string;
     name: string;
+    emoji: string;
+    emojiCode: string;
   }[];
   scopes: {
     name?: string;
@@ -139,46 +141,66 @@ async function ask(question: string, save: (input: string) => void,
 }
 
 const DEFAULT_TYPES = [
-  {
-    value: 'feat',
-    name: 'A new feature'
-  },
-  {
-    value: 'fix',
-    name: 'A bug fix'
-  },
-  {
-    value: 'docs',
-    name: 'Documentation only changes'
-  },
-  {
-    value: 'style',
-    name: 'Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)'
-  },
-  {
-    value: 'refactor',
-    name: 'A code change that neither fixes a bug nor adds a feature'
-  },
-  {
-    value: 'perf',
-    name: 'A code change that improves performance'
-  },
-  {
-    value: 'test',
-    name: 'Adding missing tests or correcting existing tests'
-  },
-  {
-    value: 'build',
-    name: 'Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)'
-  },
-  {
-    value: 'ci',
-    name: 'Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)'
-  },
-  {
-    value: 'chore',
-    name: 'Other changes that don\'t modify src or test files'
-  }
+    {
+        value: 'feat',
+        name: '       : ✨ A new feature',
+        emoji: '✨',
+        emojiCode: ':sparkles:',
+    },
+    {
+        value: 'fix',
+        name: '        : 🐛 A bug fix',
+        emoji: '🐛',
+        emojiCode: ':bug:'
+    },
+    {
+        value: 'docs',
+        name: '      : 📖 Documentation only changes',
+        emoji: '📖',
+        emojiCode: ':pencil:'
+    },
+    {
+        value: 'style',
+        name: '     : 💄 Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)',
+        emoji: '💄',
+        emojiCode: ':lipstick:'
+    },
+    {
+        value: 'refactor',
+        name: ' : 📦 A code change that neither fixes a bug nor adds a feature',
+        emoji: '📦',
+        emojiCode: ':package:'
+    },
+    {
+        value: 'perf',
+        name: '      : 🚀 A code change that improves performance',
+        emoji: '🚀',
+        emojiCode: ':rocket:'
+    },
+    {
+        value: 'test',
+        name: '      : 🚨 Adding missing tests or correcting existing tests',
+        emoji: '🚨',
+        emojiCode: ':rotating_light:'
+    },
+    {
+        value: 'build',
+        name: '     : 👷 Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)',
+        emoji: '👷',
+        emojiCode: ':construction_worker:'
+    },
+    {
+        value: 'ci',
+        name: '         : 💻 Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)',
+        emoji: '💻',
+        emojiCode: ':computer:'
+    },
+    {
+        value: 'chore',
+        name: '    : 🎫 Other changes that don\'t modify src or test files',
+        emoji: '🎫',
+        emojiCode: ':ticket:'
+    }
 ];
 
 const DEFAULT_MESSAGES = {
@@ -351,10 +373,12 @@ class ConventionalCommitMessage {
   }
 
   public get message(): string {
+    const types = (this.czConfig && this.czConfig.types) || DEFAULT_TYPES;
+    const emoji = types.filter(e => e.value === this.type);
     // tslint:disable-next-line prefer-template
     return this.type +
       (typeof this.scope === 'string' && this.scope ? `(${this.scope})` : '') +
-      `: ${this.subject}\n\n${this.body}\n\n` +
+      `: ${emoji.length !== 0 ? emoji[0].emojiCode : ''} ${this.subject}\n\n${this.body}\n\n` +
       (this.breaking ? `BREAKING CHANGE: ${this.breaking}\n` : '') +
       this.messageFooter();
   }

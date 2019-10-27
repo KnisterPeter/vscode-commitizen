@@ -1,9 +1,9 @@
-# vscode-commitizen README
+# vscode-commitizen-emoji README
 
-[![Build Status](https://travis-ci.org/KnisterPeter/vscode-commitizen.svg?branch=master)](https://travis-ci.org/KnisterPeter/vscode-commitizen)
-[![Marketplace Version](https://vsmarketplacebadge.apphb.com/version/knisterpeter.vscode-commitizen.svg)](https://marketplace.visualstudio.com/items?itemName=KnisterPeter.vscode-commitizen)
-[![Installs](https://vsmarketplacebadge.apphb.com/installs/knisterpeter.vscode-commitizen.svg)](https://marketplace.visualstudio.com/items?itemName=KnisterPeter.vscode-commitizen)
-[![Greenkeeper badge](https://badges.greenkeeper.io/KnisterPeter/vscode-commitizen.svg)](https://greenkeeper.io/)
+[![Build Status](https://travis-ci.org/KnisterPeter/vscode-commitizen-emoji.svg?branch=master)](https://travis-ci.org/KnisterPeter/vscode-commitizen-emoji)
+[![Marketplace Version](https://vsmarketplacebadge.apphb.com/version/knisterpeter.vscode-commitizen-emoji.svg)](https://marketplace.visualstudio.com/items?itemName=KnisterPeter.vscode-commitizen-emoji)
+[![Installs](https://vsmarketplacebadge.apphb.com/installs/knisterpeter.vscode-commitizen-emoji.svg)](https://marketplace.visualstudio.com/items?itemName=KnisterPeter.vscode-commitizen-emoji)
+[![Greenkeeper badge](https://badges.greenkeeper.io/KnisterPeter/vscode-commitizen-emoji.svg)](https://greenkeeper.io/)
 
 This vscode extension adds [commitizen support](https://github.com/commitizen).
 
