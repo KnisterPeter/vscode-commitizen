@@ -1,5 +1,5 @@
 {
-  "name": "vscode-commitizen-emoji",
+  "name": "vscode-commitizen",
   "displayName": "Visual Studio Code Commitizen Support with emoji",
   "description": "commitizen - git commit with conventions",
   "version": "0.8.4",
@@ -18,7 +18,7 @@
     "conventional-changelog"
   ],
   "activationEvents": [
-    "onCommand:vscode-commitizen-emoji.commit"
+    "onCommand:vscode-commitizen.commit"
   ],
   "main": "./out/src/extension",
   "contributes": {
@@ -49,7 +49,7 @@
     },
     "commands": [
       {
-        "command": "vscode-commitizen-emoji.commit",
+        "command": "vscode-commitizen.commit",
         "title": "conventional commit",
         "category": "Commitizen"
       }
@@ -87,7 +87,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/KnisterPeter/vscode-commitizen-emoji.git"
+    "url": "https://github.com/KnisterPeter/vscode-commitizen.git"
   },
   "author": {
     "name": "Markus Wolf",
@@ -95,9 +95,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/KnisterPeter/vscode-commitizen-emoji/issues"
+    "url": "https://github.com/KnisterPeter/vscode-commitizen/issues"
   },
-  "homepage": "https://github.com/KnisterPeter/vscode-commitizen-emoji",
+  "homepage": "https://github.com/KnisterPeter/vscode-commitizen",
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-customizable"
