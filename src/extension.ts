@@ -373,8 +373,8 @@ class ConventionalCommitMessage {
   }
 
   public get message(): string {
-    const czTypes = (this.czConfig && this.czConfig.types);
-    const emojiEntry = czTypes.filter(eachEmoji => eachEmoji.value === this.type);
+    const czTypes = this.czConfig && this.czConfig.types;
+    const emojiEntry = czTypes!.filter(eachEmoji => eachEmoji.value === this.type);
     const emoji = emojiEntry.length !== 0 ? emojiEntry[0].emojiCode : '';
     // tslint:disable-next-line prefer-template
     return this.type +
