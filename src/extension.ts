@@ -145,7 +145,7 @@ const DEFAULT_TYPES = [
         value: 'feat',
         name: '       : ✨ A new feature',
         emoji: '✨',
-        emojiCode: ':sparkles:',
+        emojiCode: ':sparkles:'
     },
     {
         value: 'fix',
@@ -373,12 +373,13 @@ class ConventionalCommitMessage {
   }
 
   public get message(): string {
-    const types = (this.czConfig && this.czConfig.types) || DEFAULT_TYPES;
-    const emoji = types.filter(e => e.value === this.type);
+    const czTypes = (this.czConfig && this.czConfig.types);
+    const emojiEntry = czTypes.filter(eachEmoji => eachEmoji.value === this.type);
+    const emoji = emojiEntry.length !== 0 ? emojiEntry[0].emojiCode : '';
     // tslint:disable-next-line prefer-template
     return this.type +
       (typeof this.scope === 'string' && this.scope ? `(${this.scope})` : '') +
-      `: ${emoji.length !== 0 ? emoji[0].emojiCode : ''} ${this.subject}\n\n${this.body}\n\n` +
+      `: ${emoji} ${this.subject}\n\n${this.body}\n\n` +
       (this.breaking ? `BREAKING CHANGE: ${this.breaking}\n` : '') +
       this.messageFooter();
   }
