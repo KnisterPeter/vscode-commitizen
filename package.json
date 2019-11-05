@@ -76,7 +76,7 @@
     "husky": "3.0.9",
     "mocha": "6.2.2",
     "standard-version": "7.0.0",
-    "tslint": "5.20.0",
+    "tslint": "5.20.1",
     "typescript": "3.6.4",
     "vscode": "1.1.36"
   },
