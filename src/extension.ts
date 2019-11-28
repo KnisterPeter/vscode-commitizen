@@ -196,7 +196,7 @@ async function commit(cwd: string, message: string): Promise<void> {
   channel.appendLine(`About to commit '${message}'`);
   try {
     await conditionallyStageFiles(cwd);
-    const result = await execa('git', ['commit', '-m', message], {cwd});
+    const result = await execa('git', ['commit', '-m', `"${message}"`], {cwd});
     await vscode.commands.executeCommand('git.refresh');
     if (getConfiguration().autoSync) {
       await vscode.commands.executeCommand('git.sync');
