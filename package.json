@@ -73,7 +73,7 @@
     "@types/wrap-ansi": "3.0.0",
     "conventional-changelog-lint": "2.1.1",
     "cz-customizable": "6.2.0",
-    "husky": "4.2.2",
+    "husky": "4.2.3",
     "mocha": "7.0.1",
     "standard-version": "7.1.0",
     "tslint": "5.20.1",
