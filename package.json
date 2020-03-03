@@ -68,7 +68,7 @@
   },
   "devDependencies": {
     "@knisterpeter/standard-tslint": "1.7.2",
-    "@types/mocha": "7.0.1",
+    "@types/mocha": "7.0.2",
     "@types/node": "10.17.16",
     "@types/wrap-ansi": "3.0.0",
     "conventional-changelog-lint": "2.1.1",
