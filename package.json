@@ -72,6 +72,7 @@
     "@types/node": "10.17.17",
     "@types/wrap-ansi": "3.0.0",
     "conventional-changelog-lint": "2.1.1",
+    "conventional-commit-types": "3.0.0",
     "cz-customizable": "6.2.0",
     "husky": "4.2.3",
     "mocha": "7.1.1",
