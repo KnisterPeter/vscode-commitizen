@@ -1,4 +1,5 @@
 import * as execa from 'execa';
+import { types } from 'conventional-commit-types';
 import { join } from 'path';
 import * as sander from 'sander';
 // tslint:disable-next-line:no-implicit-dependencies
@@ -138,48 +139,7 @@ async function ask(question: string, save: (input: string) => void,
   return true;
 }
 
-const DEFAULT_TYPES = [
-  {
-    value: 'feat',
-    name: 'A new feature'
-  },
-  {
-    value: 'fix',
-    name: 'A bug fix'
-  },
-  {
-    value: 'docs',
-    name: 'Documentation only changes'
-  },
-  {
-    value: 'style',
-    name: 'Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)'
-  },
-  {
-    value: 'refactor',
-    name: 'A code change that neither fixes a bug nor adds a feature'
-  },
-  {
-    value: 'perf',
-    name: 'A code change that improves performance'
-  },
-  {
-    value: 'test',
-    name: 'Adding missing tests or correcting existing tests'
-  },
-  {
-    value: 'build',
-    name: 'Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)'
-  },
-  {
-    value: 'ci',
-    name: 'Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)'
-  },
-  {
-    value: 'chore',
-    name: 'Other changes that don\'t modify src or test files'
-  }
-];
+const DEFAULT_TYPES = Object.entries(types).map(entry => ({value: entry[0], name: entry[1].description}));
 
 const DEFAULT_MESSAGES = {
   type: 'Select the type of change that you\'re committing',
