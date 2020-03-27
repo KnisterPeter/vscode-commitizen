@@ -1,10 +1,10 @@
 import * as execa from 'execa';
-import { types } from 'conventional-commit-types';
 import { join } from 'path';
 import * as sander from 'sander';
 // tslint:disable-next-line:no-implicit-dependencies
 import * as vscode from 'vscode';
 import * as wrap from 'wrap-ansi';
+const types = require('conventional-commit-types').types;
 
 let channel: vscode.OutputChannel;
 
