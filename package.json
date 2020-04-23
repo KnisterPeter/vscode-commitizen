@@ -78,7 +78,7 @@
     "standard-version": "7.1.0",
     "tslint": "6.1.1",
     "typescript": "3.8.3",
-    "vscode": "1.1.36"
+    "vscode": "1.1.37"
   },
   "dependencies": {
     "execa": "^4.0.0",
