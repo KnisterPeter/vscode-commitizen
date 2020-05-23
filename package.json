@@ -74,7 +74,7 @@
     "conventional-changelog-lint": "2.1.1",
     "cz-customizable": "6.2.0",
     "husky": "4.2.5",
-    "mocha": "7.1.2",
+    "mocha": "7.2.0",
     "standard-version": "8.0.0",
     "tslint": "6.1.2",
     "typescript": "3.9.3",
