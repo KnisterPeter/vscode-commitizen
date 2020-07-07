@@ -55,7 +55,7 @@
     "commands": [
       {
         "command": "vscode-commitizen.commit",
-        "title": "conventional commit",
+        "title": "Conventional Commit",
         "category": "Commitizen"
       }
     ]
