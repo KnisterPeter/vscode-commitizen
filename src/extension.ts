@@ -11,6 +11,7 @@ interface Configuration {
   autoSync: boolean;
   subjectLength: number;
   showOutputChannel: 'off' | 'always' | 'onError';
+  quoteMessageInGitCommit: boolean;
 }
 
 function getConfiguration(): Configuration {
@@ -194,9 +195,16 @@ const DEFAULT_MESSAGES = {
 
 async function commit(cwd: string, message: string): Promise<void> {
   channel.appendLine(`About to commit '${message}'`);
+
+  let messageForGit = message;
+
+  if (getConfiguration().quoteMessageInGitCommit) {
+    messageForGit = `"${message}"`;
+  }
+
   try {
     await conditionallyStageFiles(cwd);
-    const result = await execa('git', ['commit', '-m', `"${message}"`], {cwd});
+    const result = await execa('git', ['commit', '-m', messageForGit], {cwd});
     await vscode.commands.executeCommand('git.refresh');
     if (getConfiguration().autoSync) {
       await vscode.commands.executeCommand('git.sync');

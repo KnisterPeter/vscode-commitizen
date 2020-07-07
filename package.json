@@ -44,6 +44,11 @@
           ],
           "default": "onError",
           "description": "Open the output panel after commit."
+        },
+        "commitizen.quoteMessageInGitCommit": {
+          "type": "boolean",
+          "default": true,
+          "description": "Set to true to put double quotes around the message when calling git -m."
         }
       }
     },
