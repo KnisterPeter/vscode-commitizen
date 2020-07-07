@@ -390,7 +390,9 @@ class ConventionalCommitMessage {
 }
 
 function capitalizeWindowsDriveLetter(path: string): string {
-  if (!path) return path;
+  if (!path) {
+    return path;
+  }
 
   return path.replace(/(\w+?):/, rootElement => {
     return rootElement.toUpperCase();
