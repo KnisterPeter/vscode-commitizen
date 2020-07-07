@@ -12,6 +12,7 @@ interface Configuration {
   subjectLength: number;
   showOutputChannel: 'off' | 'always' | 'onError';
   quoteMessageInGitCommit: boolean;
+  capitalizeWindowsDriveLetter: boolean;
 }
 
 function getConfiguration(): Configuration {
@@ -201,10 +202,16 @@ async function commit(cwd: string, message: string): Promise<void> {
   if (getConfiguration().quoteMessageInGitCommit) {
     messageForGit = `"${message}"`;
   }
+  
+  let cwdForGit = cwd;
+
+  if (getConfiguration().capitalizeWindowsDriveLetter) {
+    cwdForGit = capitalizeWindowsDriveLetter(cwd);
+  }
 
   try {
     await conditionallyStageFiles(cwd);
-    const result = await execa('git', ['commit', '-m', messageForGit], {cwd});
+    const result = await execa('git', ['commit', '-m', messageForGit], {cwd: cwdForGit});
     await vscode.commands.executeCommand('git.refresh');
     if (getConfiguration().autoSync) {
       await vscode.commands.executeCommand('git.sync');
@@ -380,4 +387,12 @@ class ConventionalCommitMessage {
       ? this.czConfig.messages[messageType]
       : DEFAULT_MESSAGES[messageType];
   }
+}
+
+function capitalizeWindowsDriveLetter(path: string): string {
+  if (!path) return path;
+
+  return path.replace(/(\w+?):/, rootElement => {
+    return rootElement.toUpperCase();
+  });
 }
