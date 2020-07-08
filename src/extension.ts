@@ -202,7 +202,6 @@ async function commit(cwd: string, message: string): Promise<void> {
   if (getConfiguration().quoteMessageInGitCommit) {
     messageForGit = `"${message}"`;
   }
-  
   let cwdForGit = cwd;
 
   if (getConfiguration().capitalizeWindowsDriveLetter) {
