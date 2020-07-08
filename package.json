@@ -80,6 +80,7 @@
     "cz-customizable": "6.2.1",
     "husky": "4.2.5",
     "mocha": "8.0.1",
+    "shipjs": "0.20.1",
     "standard-version": "8.0.0",
     "tslint": "6.1.2",
     "typescript": "3.9.6",

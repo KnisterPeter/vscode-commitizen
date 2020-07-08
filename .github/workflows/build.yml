@@ -35,9 +35,10 @@ jobs:
             ${{ runner.os }}-yarn-
       - run: |
           yarn install
+      - run: |
+          yarn vscode:prepublish
+          yarn linter
       - uses: GabrielBB/xvfb-action@v1.0
         with:
           run: |
-            yarn vscode:prepublish
-            yarn linter
             yarn test
