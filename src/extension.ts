@@ -197,20 +197,11 @@ const DEFAULT_MESSAGES = {
 async function commit(cwd: string, message: string): Promise<void> {
   channel.appendLine(`About to commit '${message}'`);
 
-  let messageForGit = message;
-
-  if (getConfiguration().quoteMessageInGitCommit) {
-    messageForGit = `"${message}"`;
-  }
-  let cwdForGit = cwd;
-
-  if (getConfiguration().capitalizeWindowsDriveLetter) {
-    cwdForGit = capitalizeWindowsDriveLetter(cwd);
-  }
+  const gitCmdArgs = getGitCmdArgs(message, cwd);
 
   try {
     await conditionallyStageFiles(cwd);
-    const result = await execa('git', ['commit', '-m', messageForGit], {cwd: cwdForGit});
+    const result = await execa('git', ['commit', '-m', gitCmdArgs.message], { cwd: gitCmdArgs.cwd });
     await vscode.commands.executeCommand('git.refresh');
     if (getConfiguration().autoSync) {
       await vscode.commands.executeCommand('git.sync');
@@ -396,4 +387,27 @@ function capitalizeWindowsDriveLetter(path: string): string {
   return path.replace(/(\w+?):/, rootElement => {
     return rootElement.toUpperCase();
   });
+}
+
+function getGitCmdArgs(message: string, cwd: string): GitCmdArgs {
+  let messageForGit = message;
+
+  if (getConfiguration().quoteMessageInGitCommit) {
+    messageForGit = `"${message}"`;
+  }
+  let cwdForGit = cwd;
+
+  if (getConfiguration().capitalizeWindowsDriveLetter) {
+    cwdForGit = capitalizeWindowsDriveLetter(cwd);
+  }
+
+  return {
+    message,
+    cwd
+  };
+}
+
+interface GitCmdArgs {
+  message: string;
+  cwd: string;
 }
