@@ -1,0 +1,20 @@
+name: Ship js trigger release
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  trigger_release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - run: |
+          yarn install
+      - run: |
+          yarn shipjs trigger
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VSCE_TOKEN: ${{ secrets.VSCE_TOKEN }}
