@@ -402,8 +402,8 @@ function getGitCmdArgs(message: string, cwd: string): GitCmdArgs {
   }
 
   return {
-    message,
-    cwd
+    message: messageForGit,
+    cwd: cwdForGit
   };
 }
 
