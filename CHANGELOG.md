@@ -15,12 +15,7 @@
 * add option to toggle quoting the git message ([faa5dae](https://github.com/KnisterPeter/vscode-commitizen/commit/faa5daef4e5b9eaef45d46937df40f7901522c4e)), closes [#215](https://github.com/KnisterPeter/vscode-commitizen/issues/215)
 
 
-
-# Changelog
-
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
-
-### [0.8.4](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.8.3...v0.8.4) (2019-10-11)
+# [0.8.4](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.8.3...v0.8.4) (2019-10-11)
 
 
 ### Bug Fixes
