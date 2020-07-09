@@ -1,3 +1,21 @@
+# [0.9.0](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.8.4...v0.9.0) (2020-07-09)
+
+
+### Bug Fixes
+
+* **deps:** update dependency execa to v3 ([509a8dc](https://github.com/KnisterPeter/vscode-commitizen/commit/509a8dc0da22ed88882a53f406f288b8900c6311))
+* **deps:** update dependency execa to v4 ([10bfe12](https://github.com/KnisterPeter/vscode-commitizen/commit/10bfe1218d1472eb8c55c9fdeffb00ffbb393487))
+* **deps:** update dependency wrap-ansi to v7 ([f055902](https://github.com/KnisterPeter/vscode-commitizen/commit/f05590216ed8cb7500907b137923dfb351b56bbe))
+* includeif with lowercase drive letter ([#296](https://github.com/KnisterPeter/vscode-commitizen/issues/296)) ([#297](https://github.com/KnisterPeter/vscode-commitizen/issues/297)) ([3ac91b3](https://github.com/KnisterPeter/vscode-commitizen/commit/3ac91b39dcd30603014c3b8fed54b62a11aed73a))
+* wrap commit message in quotes ([4cf64c2](https://github.com/KnisterPeter/vscode-commitizen/commit/4cf64c28511250a3191eb8695aa8307f584a4068)), closes [#215](https://github.com/KnisterPeter/vscode-commitizen/issues/215)
+
+
+### Features
+
+* add option to toggle quoting the git message ([faa5dae](https://github.com/KnisterPeter/vscode-commitizen/commit/faa5daef4e5b9eaef45d46937df40f7901522c4e)), closes [#215](https://github.com/KnisterPeter/vscode-commitizen/issues/215)
+
+
+
 # Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
