@@ -1,6 +1,7 @@
 {
   "extends": "@knisterpeter/standard-tslint",
   "rules": {
-    "await-promise": [true, "Thenable"]
+    "await-promise": [true, "Thenable"],
+    "space-before-function-paren": [false]
   }
 }

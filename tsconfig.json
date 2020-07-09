@@ -1,27 +1,23 @@
 {
   "compilerOptions": {
-    "experimentalDecorators": true,
-    "lib": [
-      "dom",
-      "es2015"
-    ],
     "module": "commonjs",
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "target": "es6",
     "outDir": "out",
-    "pretty": true,
-    "rootDir": ".",
+    "lib": ["ESNext"],
     "sourceMap": true,
-    "strictNullChecks": true,
+    "rootDir": "src",
+    "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedParameters": true,
     "suppressImplicitAnyIndexErrors": true,
-    "target": "es6"
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "importsNotUsedAsValues": "error",
+    "moduleResolution": "Node",
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true
   },
-  "exclude": [
-    "node_modules",
-    ".vscode-test"
-  ]
+  "exclude": ["node_modules", ".vscode-test"]
 }
