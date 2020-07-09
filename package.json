@@ -106,6 +106,7 @@
     "email": "knister.peter@shadowrun-clan.de"
   },
   "license": "MIT",
+  "icon": "images/commitizen-logo.png",
   "bugs": {
     "url": "https://github.com/KnisterPeter/vscode-commitizen/issues"
   },
