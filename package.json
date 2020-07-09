@@ -87,7 +87,7 @@
     "glob": "7.1.6",
     "husky": "4.2.5",
     "mocha": "8.0.1",
-    "prettier": "^2.0.5",
+    "prettier": "2.0.5",
     "shipjs": "0.20.1",
     "standard-version": "8.0.0",
     "tslint": "6.1.2",
