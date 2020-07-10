@@ -1,3 +1,8 @@
+<a name="0.9.1"></a>
+## [0.9.1](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.8.4...v0.9.1) (2020-07-10)
+
+
+
 # [0.9.0](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.8.4...v0.9.0) (2020-07-09)
 
 
