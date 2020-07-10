@@ -1,6 +1,6 @@
 # vscode-commitizen README
 
-[![Build Status](https://travis-ci.org/KnisterPeter/vscode-commitizen.svg?branch=master)](https://travis-ci.org/KnisterPeter/vscode-commitizen)
+![build](https://github.com/KnisterPeter/vscode-commitizen/workflows/build/badge.svg)
 [![Marketplace Version](https://vsmarketplacebadge.apphb.com/version/knisterpeter.vscode-commitizen.svg)](https://marketplace.visualstudio.com/items?itemName=KnisterPeter.vscode-commitizen)
 [![Installs](https://vsmarketplacebadge.apphb.com/installs/knisterpeter.vscode-commitizen.svg)](https://marketplace.visualstudio.com/items?itemName=KnisterPeter.vscode-commitizen)
 [![Greenkeeper badge](https://badges.greenkeeper.io/KnisterPeter/vscode-commitizen.svg)](https://greenkeeper.io/)
