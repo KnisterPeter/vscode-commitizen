@@ -80,7 +80,7 @@
     "@knisterpeter/standard-tslint": "1.7.2",
     "@types/mocha": "7.0.2",
     "@types/node": "10.17.26",
-    "@types/vscode": "1.46.0",
+    "@types/vscode": "1.47.0",
     "@types/wrap-ansi": "3.0.0",
     "conventional-changelog-lint": "2.1.1",
     "cz-customizable": "6.2.1",
