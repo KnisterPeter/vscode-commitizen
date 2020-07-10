@@ -1,3 +1,13 @@
+<a name="0.9.2"></a>
+## [0.9.2](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.8.4...v0.9.2) (2020-07-10)
+
+
+### Bug Fixes
+
+* correct minimal code version ([95dc509](https://github.com/KnisterPeter/vscode-commitizen/commit/95dc509))
+
+
+
 <a name="0.9.1"></a>
 ## [0.9.1](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.8.4...v0.9.1) (2020-07-10)
 
