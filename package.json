@@ -20,7 +20,7 @@
   "activationEvents": [
     "onCommand:vscode-commitizen.commit"
   ],
-  "main": "./out/src/extension",
+  "main": "./out/extension",
   "contributes": {
     "configuration": {
       "title": "Commitizen configuration",
@@ -71,10 +71,7 @@
     "test": "node ./out/test/runTest.js",
     "vscode:prepublish": "tsc -p ./",
     "compile": "tsc -watch -p ./",
-    "prerelease": "git checkout master && git pull origin master && npm run vscode:prepublish",
-    "release": "standard-version",
-    "postrelease": "git push --follow-tags origin master",
-    "publish-extension": "vsce publish $(node -e \"console.log(require('./package.json').version)\")"
+    "publish-extension": "vsce publish --yarn --pat $VSCE_TOKEN $(node -e \"console.log(require('./package.json').version)\")"
   },
   "devDependencies": {
     "@knisterpeter/standard-tslint": "1.7.2",
@@ -89,7 +86,6 @@
     "mocha": "8.0.1",
     "prettier": "2.0.5",
     "shipjs": "0.20.1",
-    "standard-version": "8.0.0",
     "tslint": "6.1.2",
     "typescript": "3.9.6",
     "vsce": "1.77.0",
