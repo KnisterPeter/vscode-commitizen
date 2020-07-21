@@ -3,7 +3,7 @@
 ![build](https://github.com/KnisterPeter/vscode-commitizen/workflows/build/badge.svg)
 [![Marketplace Version](https://vsmarketplacebadge.apphb.com/version/knisterpeter.vscode-commitizen.svg)](https://marketplace.visualstudio.com/items?itemName=KnisterPeter.vscode-commitizen)
 [![Installs](https://vsmarketplacebadge.apphb.com/installs/knisterpeter.vscode-commitizen.svg)](https://marketplace.visualstudio.com/items?itemName=KnisterPeter.vscode-commitizen)
-[![Greenkeeper badge](https://badges.greenkeeper.io/KnisterPeter/vscode-commitizen.svg)](https://greenkeeper.io/)
+[![renovate badge](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovateapp.com/)
 
 This vscode extension adds [commitizen support](https://github.com/commitizen).
 
