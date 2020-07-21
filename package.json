@@ -74,13 +74,13 @@
     "publish-extension": "vsce publish --yarn --pat $VSCE_TOKEN $(node -e \"console.log(require('./package.json').version)\")"
   },
   "devDependencies": {
+    "@commitlint/cli": "^9.1.1",
+    "@commitlint/config-conventional": "^9.1.1",
     "@knisterpeter/standard-tslint": "1.7.2",
     "@types/mocha": "8.0.0",
     "@types/node": "10.17.27",
-    "@types/vscode": "1.47.0",
+    "@types/vscode": "1.46.0",
     "@types/wrap-ansi": "3.0.0",
-    "conventional-changelog-lint": "2.1.1",
-    "cz-customizable": "6.2.1",
     "glob": "7.1.6",
     "husky": "4.2.5",
     "mocha": "8.0.1",
@@ -110,17 +110,14 @@
     "url": "https://github.com/KnisterPeter/vscode-commitizen/issues"
   },
   "homepage": "https://github.com/KnisterPeter/vscode-commitizen",
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-customizable"
-    },
-    "cz-customizable": {
-      "config": "./.cz-config.js"
-    }
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   },
   "husky": {
     "hooks": {
-      "commit-msg": "conventional-changelog-lint -e"
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
   "prettier": {

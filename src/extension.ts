@@ -234,14 +234,16 @@ const DEFAULT_MESSAGES = {
 };
 
 async function commit(cwd: string, message: string): Promise<void> {
-  channel.appendLine(`About to commit '${message}'`);
-
   const gitCmdArgs = getGitCmdArgs(message, cwd);
+
+  channel.appendLine(`About to commit '${gitCmdArgs.message}'`);
 
   try {
     await conditionallyStageFiles(cwd);
     const result = await execa('git', ['commit', '-m', gitCmdArgs.message], {
-      cwd: gitCmdArgs.cwd
+      cwd: gitCmdArgs.cwd,
+      preferLocal: false,
+      shell: true
     });
     await vscode.commands.executeCommand('git.refresh');
     if (getConfiguration().autoSync) {
