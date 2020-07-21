@@ -1,3 +1,12 @@
+## [0.9.3](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.9.2...v0.9.3) (2020-07-21)
+
+
+### Bug Fixes
+
+* git shellout ([d275e4c](https://github.com/KnisterPeter/vscode-commitizen/commit/d275e4cb85a2a218d30aa29a3d8a70d4d0577482)), closes [#313](https://github.com/KnisterPeter/vscode-commitizen/issues/313)
+
+
+
 <a name="0.9.2"></a>
 ## [0.9.2](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.8.4...v0.9.2) (2020-07-10)
 
