@@ -384,7 +384,7 @@ class ConventionalCommitMessage {
               this.scope = pick.label || undefined;
             },
             this.inputMessage('customScopeEntry'),
-            this.inputMessage('customScope')
+            this.inputMessage('customScope').bind(this)
           );
         }
       } else if (
