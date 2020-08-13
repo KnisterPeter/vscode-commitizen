@@ -16,15 +16,11 @@ interface Configuration {
 }
 
 function getConfiguration(): Configuration {
-  const config = vscode.workspace
-    .getConfiguration()
-    .get<Configuration>('commitizen');
+  const config = vscode.workspace.getConfiguration().get<Configuration>('commitizen');
   return config!;
 }
 
-export async function activate(
-  context: vscode.ExtensionContext
-): Promise<void> {
+export async function activate(context: vscode.ExtensionContext): Promise<void> {
   channel = vscode.window.createOutputChannel('commitizen');
   channel.appendLine('Commitizen support started');
 
@@ -40,12 +36,9 @@ export async function activate(
       await ccm.getBreaking();
       await ccm.getFooter();
       if (ccm.complete && vscode.workspace.workspaceFolders) {
-        await commit(
-          vscode.workspace.workspaceFolders[0].uri.fsPath,
-          ccm.message.trim()
-        );
+        await commit(vscode.workspace.workspaceFolders[0].uri.fsPath, ccm.message.trim());
       }
-    })
+    }),
   );
 }
 
@@ -76,10 +69,7 @@ async function readCzConfig(): Promise<CzConfig | undefined> {
   if (!vscode.workspace.workspaceFolders) {
     return undefined;
   }
-  let configPath = join(
-    vscode.workspace.workspaceFolders[0].uri.fsPath,
-    '.cz-config.js'
-  );
+  let configPath = join(vscode.workspace.workspaceFolders[0].uri.fsPath, '.cz-config.js');
   if (await sander.exists(configPath)) {
     return require(configPath) as CzConfig;
   }
@@ -87,15 +77,9 @@ async function readCzConfig(): Promise<CzConfig | undefined> {
   if (!pkg) {
     return undefined;
   }
-  configPath = join(
-    vscode.workspace.workspaceFolders[0].uri.fsPath,
-    '.cz-config.js'
-  );
+  configPath = join(vscode.workspace.workspaceFolders[0].uri.fsPath, '.cz-config.js');
   if (hasCzConfig(pkg)) {
-    configPath = join(
-      vscode.workspace.workspaceFolders[0].uri.fsPath,
-      pkg.config['cz-customizable'].config
-    );
+    configPath = join(vscode.workspace.workspaceFolders[0].uri.fsPath, pkg.config['cz-customizable'].config);
   }
   if (!(await sander.exists(configPath))) {
     return undefined;
@@ -107,24 +91,15 @@ async function readPackageJson(): Promise<object | undefined> {
   if (!vscode.workspace.workspaceFolders) {
     return undefined;
   }
-  const pkgPath = join(
-    vscode.workspace.workspaceFolders[0].uri.fsPath,
-    'package.json'
-  );
+  const pkgPath = join(vscode.workspace.workspaceFolders[0].uri.fsPath, 'package.json');
   if (!(await sander.exists(pkgPath))) {
     return undefined;
   }
   return JSON.parse(await sander.readFile(pkgPath));
 }
 
-function hasCzConfig(
-  pkg: any
-): pkg is { config: { 'cz-customizable': { config: string } } } {
-  return (
-    pkg.config &&
-    pkg.config['cz-customizable'] &&
-    pkg.config['cz-customizable'].config
-  );
+function hasCzConfig(pkg: any): pkg is { config: { 'cz-customizable': { config: string } } } {
+  return pkg.config && pkg.config['cz-customizable'] && pkg.config['cz-customizable'].config;
 }
 
 async function askOneOf(
@@ -132,13 +107,13 @@ async function askOneOf(
   picks: vscode.QuickPickItem[],
   save: (pick: vscode.QuickPickItem) => void,
   customLabel?: string,
-  customQuestion?: string
+  customQuestion?: string,
 ): Promise<boolean> {
   const pickOptions: vscode.QuickPickOptions = {
     placeHolder: question,
     ignoreFocusOut: true,
     matchOnDescription: true,
-    matchOnDetail: true
+    matchOnDetail: true,
   };
   const pick = await vscode.window.showQuickPick(picks, pickOptions);
   if (pick && pick.label === customLabel && !!customQuestion) {
@@ -155,14 +130,10 @@ async function askOneOf(
   return true;
 }
 
-async function ask(
-  question: string,
-  save: (input: string) => void,
-  validate?: (input: string) => string
-): Promise<boolean> {
+async function ask(question: string, save: (input: string) => void, validate?: (input: string) => string): Promise<boolean> {
   const options: vscode.InputBoxOptions = {
     placeHolder: question,
-    ignoreFocusOut: true
+    ignoreFocusOut: true,
   };
   if (validate) {
     options.validateInput = validate;
@@ -178,47 +149,44 @@ async function ask(
 const DEFAULT_TYPES = [
   {
     value: 'feat',
-    name: 'A new feature'
+    name: 'A new feature',
   },
   {
     value: 'fix',
-    name: 'A bug fix'
+    name: 'A bug fix',
   },
   {
     value: 'docs',
-    name: 'Documentation only changes'
+    name: 'Documentation only changes',
   },
   {
     value: 'style',
-    name:
-      'Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)'
+    name: 'Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)',
   },
   {
     value: 'refactor',
-    name: 'A code change that neither fixes a bug nor adds a feature'
+    name: 'A code change that neither fixes a bug nor adds a feature',
   },
   {
     value: 'perf',
-    name: 'A code change that improves performance'
+    name: 'A code change that improves performance',
   },
   {
     value: 'test',
-    name: 'Adding missing tests or correcting existing tests'
+    name: 'Adding missing tests or correcting existing tests',
   },
   {
     value: 'build',
-    name:
-      'Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)'
+    name: 'Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)',
   },
   {
     value: 'ci',
-    name:
-      'Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)'
+    name: 'Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)',
   },
   {
     value: 'chore',
-    name: "Other changes that don't modify src or test files"
-  }
+    name: "Other changes that don't modify src or test files",
+  },
 ];
 
 const DEFAULT_MESSAGES = {
@@ -227,10 +195,9 @@ const DEFAULT_MESSAGES = {
   customScopeEntry: 'Custom scope...',
   scope: 'Denote the SCOPE of this change (optional)',
   subject: 'Write a SHORT, IMPERATIVE tense description of the change',
-  body:
-    'Provide a LONGER description of the change (optional). Use "|" to break new line',
+  body: 'Provide a LONGER description of the change (optional). Use "|" to break new line',
   breaking: 'List any BREAKING CHANGES (optional)',
-  footer: 'List any ISSUES CLOSED by this change (optional). E.g.: #31, #34'
+  footer: 'List any ISSUES CLOSED by this change (optional). E.g.: #31, #34',
 };
 
 async function commit(cwd: string, message: string): Promise<void> {
@@ -243,7 +210,7 @@ async function commit(cwd: string, message: string): Promise<void> {
     const result = await execa('git', ['commit', '-m', gitCmdArgs.message], {
       cwd: gitCmdArgs.cwd,
       preferLocal: false,
-      shell: true
+      shell: true,
     });
     await vscode.commands.executeCommand('git.refresh');
     if (getConfiguration().autoSync) {
@@ -267,77 +234,36 @@ function hasOutput(result?: { stdout?: string }): boolean {
 }
 
 function shouldShowOutput(result: { exitCode: number }): boolean {
-  return (
-    getConfiguration().showOutputChannel === 'always' ||
-    (getConfiguration().showOutputChannel === 'onError' && result.exitCode > 0)
-  );
+  return getConfiguration().showOutputChannel === 'always' || (getConfiguration().showOutputChannel === 'onError' && result.exitCode > 0);
 }
 
 async function conditionallyStageFiles(cwd: string): Promise<void> {
-  const hasSmartCommitEnabled =
-    vscode.workspace
-      .getConfiguration('git')
-      .get<boolean>('enableSmartCommit') === true;
+  const hasSmartCommitEnabled = vscode.workspace.getConfiguration('git').get<boolean>('enableSmartCommit') === true;
 
   if (hasSmartCommitEnabled && !(await hasStagedFiles(cwd))) {
-    channel.appendLine(
-      'Staging all files (enableSmartCommit enabled with nothing staged)'
-    );
+    channel.appendLine('Staging all files (enableSmartCommit enabled with nothing staged)');
     await vscode.commands.executeCommand('git.stageAll');
   }
 }
 
 async function hasStagedFiles(cwd: string): Promise<boolean> {
   const result = await execa('git', ['diff', '--name-only', '--cached'], {
-    cwd
+    cwd,
   });
   return hasOutput(result);
 }
 
 class ConventionalCommitMessage {
-  private static shouldSkip(
-    czConfig: CzConfig | undefined,
-    messageType: string
-  ): czConfig is CzConfig {
-    return Boolean(
-      czConfig &&
-        czConfig.skipQuestions &&
-        czConfig.skipQuestions.includes(messageType)
-    );
+  private static shouldSkip(czConfig: CzConfig | undefined, messageType: string): czConfig is CzConfig {
+    return Boolean(czConfig && czConfig.skipQuestions && czConfig.skipQuestions.includes(messageType));
   }
 
-  private static hasScopes(
-    czConfig: CzConfig | undefined
-  ): czConfig is CzConfig {
+  private static hasScopes(czConfig: CzConfig | undefined): czConfig is CzConfig {
     return Boolean(czConfig && czConfig.scopes && czConfig.scopes.length !== 0);
   }
 
-  private static hasCustomMessage(
-    czConfig: CzConfig | undefined,
-    messageType: string
-  ): czConfig is CzConfig {
-    return Boolean(
-      czConfig &&
-        czConfig.messages &&
-        czConfig.messages.hasOwnProperty(messageType)
-    );
-  }
-
-  private static getScopePicks(
-    czConfig: CzConfig,
-    inputMessage: (inputMessage: string) => string
-  ): { label: string; description: string }[] {
-    const scopePicks = czConfig.scopes.map((scope) => ({
-      label: scope.name || (scope as string),
-      description: ''
-    }));
-    if (czConfig.allowCustomScopes) {
-      scopePicks.push({
-        label: inputMessage('customScopeEntry'),
-        description: ''
-      });
-    }
-    return scopePicks;
+  private static hasCustomMessage(czConfig: CzConfig | undefined, messageType: string): czConfig is CzConfig {
+    return Boolean(czConfig && czConfig.messages && czConfig.messages.hasOwnProperty(messageType));
   }
 
   private readonly czConfig: CzConfig | undefined;
@@ -359,13 +285,9 @@ class ConventionalCommitMessage {
       const types = (this.czConfig && this.czConfig.types) || DEFAULT_TYPES;
       const typePicks = types.map((type) => ({
         label: type.value,
-        description: type.name
+        description: type.name,
       }));
-      this.next = await askOneOf(
-        this.inputMessage('type'),
-        typePicks,
-        (pick) => (this.type = pick.label)
-      );
+      this.next = await askOneOf(this.inputMessage('type'), typePicks, (pick) => (this.type = pick.label));
     }
   }
 
@@ -373,10 +295,16 @@ class ConventionalCommitMessage {
     if (this.next) {
       if (ConventionalCommitMessage.hasScopes(this.czConfig)) {
         if (this.czConfig.scopes && this.czConfig.scopes[0] !== undefined) {
-          const scopePicks = ConventionalCommitMessage.getScopePicks(
-            this.czConfig,
-            this.inputMessage
-          );
+          const scopePicks = this.czConfig.scopes.map((scope) => ({
+            label: scope.name || (scope as string),
+            description: '',
+          }));
+          if (this.czConfig.allowCustomScopes) {
+            scopePicks.push({
+              label: this.inputMessage('customScopeEntry'),
+              description: '',
+            });
+          }
           this.next = await askOneOf(
             this.inputMessage('customScope'),
             scopePicks,
@@ -384,16 +312,11 @@ class ConventionalCommitMessage {
               this.scope = pick.label || undefined;
             },
             this.inputMessage('customScopeEntry'),
-            this.inputMessage('customScope')
+            this.inputMessage('customScope'),
           );
         }
-      } else if (
-        !ConventionalCommitMessage.shouldSkip(this.czConfig, 'scope')
-      ) {
-        this.next = await ask(
-          this.inputMessage('scope'),
-          (input) => (this.scope = input)
-        );
+      } else if (!ConventionalCommitMessage.shouldSkip(this.czConfig, 'scope')) {
+        this.next = await ask(this.inputMessage('scope'), (input) => (this.scope = input));
       }
     }
   }
@@ -407,48 +330,25 @@ class ConventionalCommitMessage {
         }
         return '';
       };
-      this.next = await ask(
-        this.inputMessage('subject'),
-        (input) => (this.subject = input),
-        validator
-      );
+      this.next = await ask(this.inputMessage('subject'), (input) => (this.subject = input), validator);
     }
   }
 
   public async getBody(): Promise<void> {
-    if (
-      this.next &&
-      !ConventionalCommitMessage.shouldSkip(this.czConfig, 'body')
-    ) {
-      this.next = await ask(
-        this.inputMessage('body'),
-        (input) =>
-          (this.body = wrap(input.split('|').join('\n'), 72, { hard: true }))
-      );
+    if (this.next && !ConventionalCommitMessage.shouldSkip(this.czConfig, 'body')) {
+      this.next = await ask(this.inputMessage('body'), (input) => (this.body = wrap(input.split('|').join('\n'), 72, { hard: true })));
     }
   }
 
   public async getBreaking(): Promise<void> {
-    if (
-      this.next &&
-      !ConventionalCommitMessage.shouldSkip(this.czConfig, 'breaking')
-    ) {
-      this.next = await ask(
-        this.inputMessage('breaking'),
-        (input) => (this.breaking = input)
-      );
+    if (this.next && !ConventionalCommitMessage.shouldSkip(this.czConfig, 'breaking')) {
+      this.next = await ask(this.inputMessage('breaking'), (input) => (this.breaking = input));
     }
   }
 
   public async getFooter(): Promise<void> {
-    if (
-      this.next &&
-      !ConventionalCommitMessage.shouldSkip(this.czConfig, 'footer')
-    ) {
-      this.next = await ask(
-        this.inputMessage('footer'),
-        (input) => (this.footer = input)
-      );
+    if (this.next && !ConventionalCommitMessage.shouldSkip(this.czConfig, 'footer')) {
+      this.next = await ask(this.inputMessage('footer'), (input) => (this.footer = input));
     }
   }
 
@@ -468,20 +368,11 @@ class ConventionalCommitMessage {
   }
 
   private messageFooter(): string {
-    return this.footer
-      ? `${
-          this.czConfig && this.czConfig.footerPrefix
-            ? this.czConfig.footerPrefix
-            : 'Closes '
-        }${this.footer}`
-      : '';
+    return this.footer ? `${this.czConfig && this.czConfig.footerPrefix ? this.czConfig.footerPrefix : 'Closes '}${this.footer}` : '';
   }
 
   private inputMessage(messageType: string): string {
-    return ConventionalCommitMessage.hasCustomMessage(
-      this.czConfig,
-      messageType
-    )
+    return ConventionalCommitMessage.hasCustomMessage(this.czConfig, messageType)
       ? this.czConfig.messages[messageType]
       : DEFAULT_MESSAGES[messageType];
   }
@@ -511,7 +402,7 @@ function getGitCmdArgs(message: string, cwd: string): GitCmdArgs {
 
   return {
     message: messageForGit,
-    cwd: cwdForGit
+    cwd: cwdForGit,
   };
 }
 
