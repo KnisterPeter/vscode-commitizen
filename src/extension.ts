@@ -323,6 +323,23 @@ class ConventionalCommitMessage {
     );
   }
 
+  private static getScopePicks(
+    czConfig: CzConfig,
+    allowCustomScopesLabel: string
+  ): { label: string; description: string }[] {
+    const scopePicks = czConfig.scopes.map((scope) => ({
+      label: scope.name || (scope as string),
+      description: ''
+    }));
+    if (czConfig.allowCustomScopes) {
+      scopePicks.push({
+        label: allowCustomScopesLabel,
+        description: ''
+      });
+    }
+    return scopePicks;
+  }
+
   private readonly czConfig: CzConfig | undefined;
   private next = true;
 
@@ -356,7 +373,10 @@ class ConventionalCommitMessage {
     if (this.next) {
       if (ConventionalCommitMessage.hasScopes(this.czConfig)) {
         if (this.czConfig.scopes && this.czConfig.scopes[0] !== undefined) {
-          const scopePicks = this.getScopePicks(this.czConfig, this.inputMessage('customScopeEntry'));
+          const scopePicks = ConventionalCommitMessage.getScopePicks(
+            this.czConfig,
+            this.inputMessage('customScopeEntry')
+          );
           this.next = await askOneOf(
             this.inputMessage('customScope'),
             scopePicks,
@@ -464,20 +484,6 @@ class ConventionalCommitMessage {
     )
       ? this.czConfig.messages[messageType]
       : DEFAULT_MESSAGES[messageType];
-  }
-  
-  private getScopePicks(czConfig: CzConfig, allowCustomScopesLabel: string): { label: string; description: string }[] {
-    const scopePicks = czConfig.scopes.map((scope) => ({
-      label: scope.name || (scope as string),
-      description: ''
-    }));
-    if (czConfig.allowCustomScopes) {
-      scopePicks.push({
-        label: allowCustomScopesLabel,
-        description: ''
-      });
-    }
-    return scopePicks;
   }
 }
 
