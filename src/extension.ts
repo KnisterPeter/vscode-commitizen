@@ -356,7 +356,7 @@ class ConventionalCommitMessage {
     if (this.next) {
       if (ConventionalCommitMessage.hasScopes(this.czConfig)) {
         if (this.czConfig.scopes && this.czConfig.scopes[0] !== undefined) {
-          const scopePicks = this.getScopePicks();
+          const scopePicks = this.getScopePicks(this.czConfig, this.inputMessage('customScopeEntry'));
           this.next = await askOneOf(
             this.inputMessage('customScope'),
             scopePicks,
@@ -466,14 +466,14 @@ class ConventionalCommitMessage {
       : DEFAULT_MESSAGES[messageType];
   }
   
-  private getScopePicks(): { label: string; description: string }[] {
-    const scopePicks = this.czConfig.scopes.map((scope) => ({
+  private getScopePicks(czConfig: CzConfig, allowCustomScopesLabel: string): { label: string; description: string }[] {
+    const scopePicks = czConfig.scopes.map((scope) => ({
       label: scope.name || (scope as string),
       description: ''
     }));
-    if (this.czConfig.allowCustomScopes) {
+    if (czConfig.allowCustomScopes) {
       scopePicks.push({
-        label: this.inputMessage('customScopeEntry'),
+        label: allowCustomScopesLabel,
         description: ''
       });
     }
