@@ -87,7 +87,7 @@
     "prettier": "2.0.5",
     "shipjs": "0.20.1",
     "tslint": "6.1.3",
-    "typescript": "3.9.7",
+    "typescript": "4.0.2",
     "vsce": "1.78.0",
     "vscode-test": "1.4.0"
   },
