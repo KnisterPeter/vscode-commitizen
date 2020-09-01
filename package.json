@@ -88,7 +88,7 @@
     "shipjs": "0.21.0",
     "tslint": "6.1.3",
     "typescript": "4.0.2",
-    "vsce": "1.79.4",
+    "vsce": "1.79.5",
     "vscode-test": "1.4.0"
   },
   "dependencies": {
