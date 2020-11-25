@@ -123,5 +123,32 @@
   "prettier": {
     "singleQuote": true,
     "trailingComma": "none"
+  },
+  "renovate": {
+    "extends": [
+      "config:base"
+    ],
+    "lockFileMaintenance": {
+      "enabled": true,
+      "automerge": true
+    },
+    "packageRules": [
+      {
+        "depTypeList": [
+          "devDependencies"
+        ],
+        "updateTypes": [
+          "minor",
+          "patch"
+        ],
+        "automerge": true
+      },
+      {
+        "packagePatterns": [
+          "^@types/"
+        ],
+        "automerge": true
+      }
+    ]
   }
 }
