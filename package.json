@@ -92,7 +92,7 @@
     "vscode-test": "1.4.1"
   },
   "dependencies": {
-    "execa": "^4.0.0",
+    "execa": "^5.0.0",
     "sander": "^0.6.0",
     "wrap-ansi": "^7.0.0"
   },
