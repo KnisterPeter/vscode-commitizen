@@ -79,7 +79,7 @@
     "@knisterpeter/standard-tslint": "1.7.2",
     "@types/mocha": "8.2.0",
     "@types/node": "10.17.46",
-    "@types/vscode": "1.51.0",
+    "@types/vscode": "1.52.0",
     "@types/wrap-ansi": "3.0.0",
     "glob": "7.1.6",
     "husky": "5.0.4",
