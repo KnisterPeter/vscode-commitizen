@@ -147,7 +147,11 @@ export class ConventionalCommitMessage {
   }
 
   public async getBreaking(): Promise<void> {
-    if (this.next && !this.shouldSkip(this.czConfig, 'breaking')) {
+    if (
+      this.next &&
+      !this.shouldSkip(this.czConfig, 'breaking') &&
+      this.allowBreakingChanges()
+    ) {
       this.next = await this.ask(
         this.inputMessage('breaking'),
         (input) => (this.breaking = input)
@@ -284,5 +288,15 @@ export class ConventionalCommitMessage {
     }
     save(input);
     return true;
+  }
+
+  private allowBreakingChanges(): boolean {
+    if (this.czConfig?.allowBreakingChanges && this.type) {
+      return this.czConfig?.allowBreakingChanges.some(
+        (type: string) => type === this.type
+      );
+    }
+
+    return false;
   }
 }
