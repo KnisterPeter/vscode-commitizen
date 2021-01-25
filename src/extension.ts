@@ -340,6 +340,19 @@ class ConventionalCommitMessage {
     return scopePicks;
   }
 
+  private static allowBreakingChanges(
+    czConfig: CzConfig | undefined,
+    selectedType: string | undefined
+  ): boolean {
+    if (czConfig?.allowBreakingChanges && selectedType) {
+      return czConfig?.allowBreakingChanges.some(
+        (type: string) => type === selectedType
+      );
+    }
+
+    return false;
+  }
+
   private readonly czConfig: CzConfig | undefined;
   private next = true;
 
@@ -431,7 +444,8 @@ class ConventionalCommitMessage {
   public async getBreaking(): Promise<void> {
     if (
       this.next &&
-      !ConventionalCommitMessage.shouldSkip(this.czConfig, 'breaking')
+      !ConventionalCommitMessage.shouldSkip(this.czConfig, 'breaking') &&
+      ConventionalCommitMessage.allowBreakingChanges(this.czConfig, this.type)
     ) {
       this.next = await ask(
         this.inputMessage('breaking'),
