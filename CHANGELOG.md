@@ -1,3 +1,18 @@
+# [0.10.0](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.9.3...v0.10.0) (2021-01-25)
+
+
+### Bug Fixes
+
+* **deps:** update dependency execa to v5 ([3354396](https://github.com/KnisterPeter/vscode-commitizen/commit/3354396afed20b7a7eb4fa98e6b41b9cb09ecdab))
+* Cannot read property 'czConfig' of undefined ([#222](https://github.com/KnisterPeter/vscode-commitizen/issues/222))  ([#327](https://github.com/KnisterPeter/vscode-commitizen/issues/327)) ([bf1b0ba](https://github.com/KnisterPeter/vscode-commitizen/commit/bf1b0ba29c2dfce34b5bc455ede4f9a453e2f5ef))
+
+
+### Features
+
+* consider allowBreakingChanges ([6f07e60](https://github.com/KnisterPeter/vscode-commitizen/commit/6f07e60cde41d8f9d9241013d24f68229cfdd5fa))
+
+
+
 ## [0.9.3](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.9.2...v0.9.3) (2020-07-21)
 
 
