@@ -1,3 +1,4 @@
+// tslint:disable-next-line:no-implicit-dependencies
 import * as vscode from 'vscode';
 import wrap from 'wrap-ansi';
 import { getConfiguration } from './Helper';

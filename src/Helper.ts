@@ -1,3 +1,4 @@
+// tslint:disable-next-line:no-implicit-dependencies
 import * as vscode from 'vscode';
 import type { Configuration } from './interfaces/Configuration';
 
