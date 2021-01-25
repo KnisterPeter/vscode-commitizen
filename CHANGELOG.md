@@ -1,3 +1,7 @@
+## [0.10.1](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.10.0...v0.10.1) (2021-01-25)
+
+
+
 # [0.10.0](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.9.3...v0.10.0) (2021-01-25)
 
 
