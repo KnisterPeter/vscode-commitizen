@@ -1,3 +1,12 @@
+## [0.10.2](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.10.1...v0.10.2) (2021-02-02)
+
+
+### Bug Fixes
+
+* bug allowBreakingChanges ([15bd0a0](https://github.com/KnisterPeter/vscode-commitizen/commit/15bd0a04d0f2888ce3b79f9c3a8b4749f0364d67))
+
+
+
 ## [0.10.1](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.10.0...v0.10.1) (2021-01-25)
 
 
