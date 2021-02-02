@@ -350,7 +350,7 @@ class ConventionalCommitMessage {
       );
     }
 
-    return false;
+    return true;
   }
 
   private readonly czConfig: CzConfig | undefined;
