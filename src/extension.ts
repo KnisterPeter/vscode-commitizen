@@ -110,7 +110,7 @@ async function readCzConfig(): Promise<CzConfig | undefined> {
     return undefined;
   }
   let configPath = join(lookupPath, '.cz-config.js');
-  channel.appendLine(configPath);
+
   if (await sander.exists(configPath)) {
     return require(configPath) as CzConfig;
   }
