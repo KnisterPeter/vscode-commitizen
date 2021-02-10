@@ -58,7 +58,7 @@
         "commitizen.useGitRoot": {
             "type": "boolean",
             "default": false,
-            "description": "Use git root too locate .cz-config.js file via `git rev-parse --show-toplevel`"
+            "description": "Use git root to locate .cz-config.js file via `git rev-parse --show-toplevel`"
         }
       }
     },
