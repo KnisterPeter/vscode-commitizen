@@ -84,7 +84,7 @@
     "@knisterpeter/standard-tslint": "1.7.2",
     "@types/mocha": "8.2.0",
     "@types/node": "10.17.46",
-    "@types/vscode": "1.53.0",
+    "@types/vscode": "1.46.0",
     "@types/wrap-ansi": "3.0.0",
     "glob": "7.1.6",
     "husky": "5.0.9",
@@ -151,6 +151,9 @@
       {
         "packagePatterns": [
           "^@types/"
+        ],
+        "excludePackagePatterns": [
+          "@types/vscode"
         ],
         "automerge": true
       }
