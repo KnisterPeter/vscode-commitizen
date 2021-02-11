@@ -1,3 +1,12 @@
+## [0.11.1](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.11.0...v0.11.1) (2021-02-11)
+
+
+### Bug Fixes
+
+* rollback vscode types ([6285234](https://github.com/KnisterPeter/vscode-commitizen/commit/6285234c9da9b9bc51b465d871f45f800cda1685))
+
+
+
 # [0.11.0](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.10.2...v0.11.0) (2021-02-11)
 
 
