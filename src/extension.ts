@@ -1,3 +1,4 @@
+import { exec } from 'child_process';
 import execa from 'execa';
 import { join } from 'path';
 import * as sander from 'sander';
@@ -13,6 +14,7 @@ interface Configuration {
   showOutputChannel: 'off' | 'always' | 'onError';
   quoteMessageInGitCommit: boolean;
   capitalizeWindowsDriveLetter: boolean;
+  useGitRoot: boolean;
   shell: boolean;
 }
 
@@ -40,11 +42,9 @@ export async function activate(
       await ccm.getBody();
       await ccm.getBreaking();
       await ccm.getFooter();
-      if (ccm.complete && vscode.workspace.workspaceFolders) {
-        await commit(
-          vscode.workspace.workspaceFolders[0].uri.fsPath,
-          ccm.message.trim()
-        );
+      const lookupPath = await findLookupPath();
+      if (ccm.complete && lookupPath) {
+        await commit(lookupPath, ccm.message.trim());
       }
     })
   );
@@ -73,14 +73,45 @@ interface CzConfig {
   skipQuestions?: string[];
 }
 
+let gitRoot: string | undefined = undefined;
+async function findLookupPath(): Promise<string | undefined> {
+  if (getConfiguration().useGitRoot && gitRoot === undefined) {
+    gitRoot = await new Promise<string>((resolve, reject) =>
+      exec('git rev-parse --show-toplevel', (err, stdout, stderr) => {
+        if (err) {
+          reject({ err, stderr });
+        } else if (stdout) {
+          channel.appendLine(`Found git root at: ${stdout}`);
+          resolve(stdout.trim());
+        } else {
+          reject({ err: 'Unable to find git root' });
+        }
+      })
+    ).catch((e) => {
+      channel.appendLine(e.err.toString());
+      if (e.stderr) {
+        channel.appendLine(e.stderr.toString());
+      }
+      return undefined;
+    });
+  }
+
+  if (gitRoot) {
+    return gitRoot;
+  } else if (!vscode.workspace.workspaceFolders) {
+    return undefined;
+  } else {
+    return vscode.workspace.workspaceFolders[0].uri.fsPath;
+  }
+}
+
 async function readCzConfig(): Promise<CzConfig | undefined> {
-  if (!vscode.workspace.workspaceFolders) {
+  const lookupPath = await findLookupPath();
+  if (!lookupPath) {
     return undefined;
   }
-  let configPath = join(
-    vscode.workspace.workspaceFolders[0].uri.fsPath,
-    '.cz-config.js'
-  );
+  let configPath = join(lookupPath, '.cz-config.js');
+
   if (await sander.exists(configPath)) {
     return require(configPath) as CzConfig;
   }
@@ -88,15 +119,9 @@ async function readCzConfig(): Promise<CzConfig | undefined> {
   if (!pkg) {
     return undefined;
   }
-  configPath = join(
-    vscode.workspace.workspaceFolders[0].uri.fsPath,
-    '.cz-config.js'
-  );
+  configPath = join(lookupPath, '.cz-config.js');
   if (hasCzConfig(pkg)) {
-    configPath = join(
-      vscode.workspace.workspaceFolders[0].uri.fsPath,
-      pkg.config['cz-customizable'].config
-    );
+    configPath = join(lookupPath, pkg.config['cz-customizable'].config);
   }
   if (!(await sander.exists(configPath))) {
     return undefined;
@@ -105,13 +130,11 @@ async function readCzConfig(): Promise<CzConfig | undefined> {
 }
 
 async function readPackageJson(): Promise<object | undefined> {
-  if (!vscode.workspace.workspaceFolders) {
+  const lookupPath = await findLookupPath();
+  if (!lookupPath) {
     return undefined;
   }
-  const pkgPath = join(
-    vscode.workspace.workspaceFolders[0].uri.fsPath,
-    'package.json'
-  );
+  const pkgPath = join(lookupPath, 'package.json');
   if (!(await sander.exists(pkgPath))) {
     return undefined;
   }
