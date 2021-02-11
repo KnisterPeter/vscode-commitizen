@@ -1,3 +1,12 @@
+# [0.12.0](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.11.1...v0.12.0) (2021-02-11)
+
+
+### Features
+
+* add git top level option ([#420](https://github.com/KnisterPeter/vscode-commitizen/issues/420)) ([9fb6f0c](https://github.com/KnisterPeter/vscode-commitizen/commit/9fb6f0cb921ad47bcf6d8f95341966c4e0689ea5))
+
+
+
 ## [0.11.1](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.11.0...v0.11.1) (2021-02-11)
 
 
