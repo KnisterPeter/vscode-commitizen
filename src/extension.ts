@@ -15,6 +15,7 @@ interface Configuration {
   quoteMessageInGitCommit: boolean;
   capitalizeWindowsDriveLetter: boolean;
   useGitRoot: boolean;
+  shell: boolean;
 }
 
 function getConfiguration(): Configuration {
@@ -266,7 +267,7 @@ async function commit(cwd: string, message: string): Promise<void> {
     const result = await execa('git', ['commit', '-m', gitCmdArgs.message], {
       cwd: gitCmdArgs.cwd,
       preferLocal: false,
-      shell: true
+      shell: getConfiguration().shell
     });
     await vscode.commands.executeCommand('git.refresh');
     if (getConfiguration().autoSync) {

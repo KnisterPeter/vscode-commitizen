@@ -1,3 +1,21 @@
+## [0.11.1](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.11.0...v0.11.1) (2021-02-11)
+
+
+### Bug Fixes
+
+* rollback vscode types ([6285234](https://github.com/KnisterPeter/vscode-commitizen/commit/6285234c9da9b9bc51b465d871f45f800cda1685))
+
+
+
+# [0.11.0](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.10.2...v0.11.0) (2021-02-11)
+
+
+### Features
+
+* add shell option ([926aa74](https://github.com/KnisterPeter/vscode-commitizen/commit/926aa74d19e75299d8ee3c60f626f4c98b97502e)), closes [#325](https://github.com/KnisterPeter/vscode-commitizen/issues/325)
+
+
+
 ## [0.10.2](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.10.1...v0.10.2) (2021-02-02)
 
 
