@@ -54,6 +54,11 @@
           "type": "boolean",
           "default": false,
           "description": "Set to true to capitalize the Windows drive letter in Git's working directory path. Git treats paths as case sensitive and may ignore [includeIf] attributes in your .gitconfig if drive letters are the wrong case."
+        },
+        "commitizen.shell": {
+          "type": "boolean",
+          "default": true,
+          "description": "Set to true to runs file inside of a shell. Uses /bin/sh on UNIX and cmd.exe on Windows."
         }
       }
     },
