@@ -1,3 +1,12 @@
+## [0.12.1](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.12.0...v0.12.1) (2021-02-17)
+
+
+### Bug Fixes
+
+* add cwd for git path context ([3c3f519](https://github.com/KnisterPeter/vscode-commitizen/commit/3c3f5197e828f66a86ebff8af0129155b35bf052)), closes [#429](https://github.com/KnisterPeter/vscode-commitizen/issues/429)
+
+
+
 # [0.12.0](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.11.1...v0.12.0) (2021-02-11)
 
 
