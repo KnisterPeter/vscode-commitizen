@@ -24,9 +24,9 @@
     js-tokens "^4.0.0"
 
 "@babel/runtime@^7.6.3":
-  version "7.13.8"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.13.8.tgz#cc886a85c072df1de23670dc1aa59fc116c4017c"
-  integrity sha512-CwQljpw6qSayc0fRG1soxHAKs1CnQMOChm4mlQP6My0kf9upVGizj/KhlTTgyUnETmHpcUXjaluNAkteRFuafg==
+  version "7.13.9"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.13.9.tgz#97dbe2116e2630c489f22e0656decd60aaa1fcee"
+  integrity sha512-aY2kU+xgJ3dJ1eU6FMB9EH8dIe8dmusF1xEku52joLvw6eAFN0AI+WxCLDnpev2LEejWBAy2sBvBOBAjI3zmvA==
   dependencies:
     regenerator-runtime "^0.13.4"
 
@@ -231,10 +231,10 @@
     "@octokit/types" "^6.0.3"
     universal-user-agent "^6.0.0"
 
-"@octokit/openapi-types@^5.2.1":
-  version "5.2.1"
-  resolved "https://registry.yarnpkg.com/@octokit/openapi-types/-/openapi-types-5.2.1.tgz#5e846f86104aef96ace20091d8afb6be27979d8a"
-  integrity sha512-Bf7MBvQ1nMpv15ANaQtRBsC7YnwQFPM0eUztp3luQs9L6sBEiQ6ArM1Wx5CG+N7tXETtd0oE0DMcU4wbLlCZIw==
+"@octokit/openapi-types@^5.3.1":
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/@octokit/openapi-types/-/openapi-types-5.3.1.tgz#a49d119a1b9e47b7a9f5133ab14be2d8afaa183d"
+  integrity sha512-TvVk2QuIA0lQZcIMd6xbdGaGDVeNYIOa3l1ZVagAIk5K3t/WMYbcg4BISNDhzdVhm/TgQB26frAgd/GV81aHJA==
 
 "@octokit/plugin-paginate-rest@^2.2.0":
   version "2.11.0"
@@ -304,11 +304,11 @@
     "@types/node" ">= 8"
 
 "@octokit/types@^6.0.3", "@octokit/types@^6.11.0", "@octokit/types@^6.7.1":
-  version "6.11.1"
-  resolved "https://registry.yarnpkg.com/@octokit/types/-/types-6.11.1.tgz#54ece128029526fa99bd71e757b9e35478403d95"
-  integrity sha512-UiSRTG2lrFbMUMwhKNR0uSV33Fzv4bNu1n5iFuuNOg80XCh0VYNhR4TQWgrkLhVxdDuej6s61aP3eQvVm6K6uA==
+  version "6.12.1"
+  resolved "https://registry.yarnpkg.com/@octokit/types/-/types-6.12.1.tgz#74cc9240d84706d1f2f5970425c90af016b0a9ac"
+  integrity sha512-eZTTWJxGBon01Ra4EX86rvlMZGkU5SeJ8BtwQlsv2wEqZttpjtefLetJndZTVbJ25qFKoyKMWsRFnwlOx7ZaDQ==
   dependencies:
-    "@octokit/openapi-types" "^5.2.1"
+    "@octokit/openapi-types" "^5.3.1"
 
 "@slack/types@^1.2.1":
   version "1.10.0"
@@ -353,9 +353,9 @@
   integrity sha512-NysN+bNqj6E0Hv4CTGWSlPzMW6vTKjDpOteycDkV4IWBsO+PU48JonrPzV9ODjiI2XrjmA05KInLgF5ivZ/YGQ==
 
 "@types/node@*", "@types/node@>= 8", "@types/node@>=8.9.0":
-  version "14.14.31"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.31.tgz#72286bd33d137aa0d152d47ec7c1762563d34055"
-  integrity sha512-vFHy/ezP5qI0rFgJ7aQnjDXwAMrG0KqqIH7tQG5PPv3BWBayOPIQNBjVc/P6hhdZfMx51REc6tfDNXHUio893g==
+  version "14.14.32"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.32.tgz#90c5c4a8d72bbbfe53033f122341343249183448"
+  integrity sha512-/Ctrftx/zp4m8JOujM5ZhwzlWLx22nbQJiVqz8/zE15gOeEW+uly3FSX4fGFpcfEvFzXcMCJwq9lGVWgyARXhg==
 
 "@types/node@10.17.55":
   version "10.17.55"
@@ -521,9 +521,9 @@ balanced-match@^1.0.0:
   integrity sha1-ibTRmasr7kneFk6gK4nORi1xt2c=
 
 before-after-hook@^2.1.0:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/before-after-hook/-/before-after-hook-2.1.1.tgz#99ae36992b5cfab4a83f6bee74ab27835f28f405"
-  integrity sha512-5ekuQOvO04MDj7kYZJaMab2S8SPjGJbotVNyv7QYFCOAwrGZs/YnoDNlh1U+m5hl7H2D/+n0taaAV/tfyd3KMA==
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/before-after-hook/-/before-after-hook-2.2.0.tgz#09c40d92e936c64777aa385c4e9b904f8147eaf0"
+  integrity sha512-jH6rKQIfroBbhEXVmI7XmXe3ix5S/PgJqpzdDPnR8JGLHWNYLsYZ6tK5iWOF/Ra3oqEX0NobXGlzbiylIzVphQ==
 
 big-integer@^1.6.17:
   version "1.6.48"
@@ -1388,9 +1388,9 @@ gitconfiglocal@^1.0.0:
     ini "^1.3.2"
 
 glob-parent@^5.1.0, glob-parent@~5.1.0:
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/glob-parent/-/glob-parent-5.1.1.tgz#b6c1ef417c4e5663ea498f1c45afac6916bbc229"
-  integrity sha512-FnI+VGOpnlGHWZxthPGR+QhR78fuiK0sNLkHQv+bL9fQi57lNNdquIbna/WrfROrolq8GK5Ek6BiMwqL/voRYQ==
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/glob-parent/-/glob-parent-5.1.2.tgz#869832c58034fe68a4093c17dc15e8340d8401c4"
+  integrity sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==
   dependencies:
     is-glob "^4.0.1"
 
@@ -1497,9 +1497,9 @@ hosted-git-info@^3.0.6:
     lru-cache "^6.0.0"
 
 htmlparser2@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/htmlparser2/-/htmlparser2-6.0.0.tgz#c2da005030390908ca4c91e5629e418e0665ac01"
-  integrity sha512-numTQtDZMoh78zJpaNdJ9MXb2cv5G3jwUoe3dMQODubZvLoGvTE/Ofp6sHvH8OGKcN/8A47pGLi/k58xHP/Tfw==
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/htmlparser2/-/htmlparser2-6.0.1.tgz#422521231ef6d42e56bd411da8ba40aa36e91446"
+  integrity sha512-GDKPd+vk4jvSuvCbyuzx/unmXkk090Azec7LovXP8as1Hn8q9p3hbjmDGbUqqhknw0ajwit6LiiWqfiTUPMK7w==
   dependencies:
     domelementtype "^2.0.1"
     domhandler "^4.0.0"
@@ -3193,9 +3193,9 @@ uc.micro@^1.0.1, uc.micro@^1.0.5:
   integrity sha512-8Y75pvTYkLJW2hWQHXxoqRgV7qb9B+9vFEtidML+7koHUFapnVJAZ6cKs+Qjz5Aw3aZWHMC6u0wJE3At+nSGwA==
 
 uglify-js@^3.1.4:
-  version "3.12.8"
-  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.12.8.tgz#a82e6e53c9be14f7382de3d068ef1e26e7d4aaf8"
-  integrity sha512-fvBeuXOsvqjecUtF/l1dwsrrf5y2BCUk9AOJGzGcm6tE7vegku5u/YvqjyDaAGr422PLoLnrxg3EnRvTqsdC1w==
+  version "3.13.0"
+  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.13.0.tgz#66ed69f7241f33f13531d3d51d5bcebf00df7f69"
+  integrity sha512-TWYSWa9T2pPN4DIJYbU9oAjQx+5qdV5RUDxwARg8fmJZrD/V27Zj0JngW5xg1DFz42G0uDYl2XhzF6alSzD62w==
 
 underscore@1.8.3:
   version "1.8.3"
