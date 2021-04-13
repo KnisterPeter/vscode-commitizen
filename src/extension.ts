@@ -31,20 +31,24 @@ export async function activate(
   channel = vscode.window.createOutputChannel('commitizen');
   channel.appendLine('Commitizen support started');
 
-  const czConfig = await readCzConfig();
-
   context.subscriptions.push(
     vscode.commands.registerCommand('vscode-commitizen.commit', async () => {
-      const ccm = new ConventionalCommitMessage(czConfig);
-      await ccm.getType();
-      await ccm.getScope();
-      await ccm.getSubject();
-      await ccm.getBody();
-      await ccm.getBreaking();
-      await ccm.getFooter();
       const lookupPath = await findLookupPath();
-      if (ccm.complete && lookupPath) {
-        await commit(lookupPath, ccm.message.trim());
+      if (lookupPath) {
+        const czConfig = await readCzConfig(lookupPath);
+        const ccm = new ConventionalCommitMessage(czConfig);
+        await ccm.getType();
+        await ccm.getScope();
+        await ccm.getSubject();
+        await ccm.getBody();
+        await ccm.getBreaking();
+        await ccm.getFooter();
+        if (ccm.complete) {
+          await commit(lookupPath, ccm.message.trim());
+        }
+      } else {
+        vscode.window.showErrorMessage('Workspace path not found');
+        channel.appendLine('Lookup path not found');
       }
     })
   );
@@ -139,17 +143,13 @@ async function findLookupPath(): Promise<string | undefined> {
   }
 }
 
-async function readCzConfig(): Promise<CzConfig | undefined> {
-  const lookupPath = await findLookupPath();
-  if (!lookupPath) {
-    return undefined;
-  }
+async function readCzConfig(lookupPath: string): Promise<CzConfig | undefined> {
   let configPath = join(lookupPath, '.cz-config.js');
 
   if (await sander.exists(configPath)) {
     return require(configPath) as CzConfig;
   }
-  const pkg = await readPackageJson();
+  const pkg = await readPackageJson(lookupPath);
   if (!pkg) {
     return undefined;
   }
@@ -163,11 +163,9 @@ async function readCzConfig(): Promise<CzConfig | undefined> {
   return require(configPath) as CzConfig;
 }
 
-async function readPackageJson(): Promise<object | undefined> {
-  const lookupPath = await findLookupPath();
-  if (!lookupPath) {
-    return undefined;
-  }
+async function readPackageJson(
+  lookupPath: string
+): Promise<object | undefined> {
   const pkgPath = join(lookupPath, 'package.json');
   if (!(await sander.exists(pkgPath))) {
     return undefined;
