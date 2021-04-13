@@ -78,6 +78,31 @@ async function findLookupPath(): Promise<string | undefined> {
   let ws = '';
   if (!vscode.workspace.workspaceFolders) {
     return undefined;
+  } else if (vscode.workspace.workspaceFolders.length > 1) {
+    const repositories = {};
+    vscode.workspace.workspaceFolders.forEach(
+      (folder: vscode.WorkspaceFolder) => {
+        repositories[folder.name] = {
+          label: folder.name,
+          description: folder.uri.fsPath
+        };
+      }
+    );
+
+    const pickOptions: vscode.QuickPickOptions = {
+      placeHolder: 'Select folder',
+      ignoreFocusOut: true,
+      matchOnDescription: true,
+      matchOnDetail: true
+    };
+    const pick = await vscode.window.showQuickPick<vscode.QuickPickItem>(
+      Object.values(repositories),
+      pickOptions
+    );
+
+    if (pick) {
+      ws = repositories[pick.label].description;
+    }
   } else {
     ws = vscode.workspace.workspaceFolders[0].uri.fsPath;
   }
@@ -278,9 +303,8 @@ async function commit(cwd: string, message: string): Promise<void> {
       preferLocal: false,
       shell: getConfiguration().shell
     });
-    await vscode.commands.executeCommand('git.refresh');
     if (getConfiguration().autoSync) {
-      await vscode.commands.executeCommand('git.sync');
+      await execa('git', ['sync'], { cwd });
     }
     if (hasOutput(result)) {
       result.stdout.split('\n').forEach((line) => channel.appendLine(line));
@@ -316,7 +340,9 @@ async function conditionallyStageFiles(cwd: string): Promise<void> {
     channel.appendLine(
       'Staging all files (enableSmartCommit enabled with nothing staged)'
     );
-    await vscode.commands.executeCommand('git.stageAll');
+    await execa('git', ['add', '.'], {
+      cwd
+    });
   }
 }
 
