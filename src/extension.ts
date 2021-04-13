@@ -134,13 +134,11 @@ async function findLookupPath(): Promise<string | undefined> {
       }
       return undefined;
     });
+
+    return gitRoot;
   }
 
-  if (gitRoot) {
-    return gitRoot;
-  } else {
-    return ws;
-  }
+  return ws;
 }
 
 async function readCzConfig(lookupPath: string): Promise<CzConfig | undefined> {
