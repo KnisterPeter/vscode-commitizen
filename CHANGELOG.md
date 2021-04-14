@@ -1,3 +1,18 @@
+# [0.13.0](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.12.1...v0.13.0) (2021-04-14)
+
+
+### Bug Fixes
+
+* error cyclomatic-complexity ([d64b210](https://github.com/KnisterPeter/vscode-commitizen/commit/d64b2101d7396c48599596869260878772a5bcea))
+* repeated calls to the findLookupPath function ([a8a34e1](https://github.com/KnisterPeter/vscode-commitizen/commit/a8a34e17ee5d91e63c476d4af681647bf8688b4d))
+
+
+### Features
+
+* add support multi folders ([8a2f5a3](https://github.com/KnisterPeter/vscode-commitizen/commit/8a2f5a330ca6ff2788c6a07b69ce95100b7c9a31))
+
+
+
 ## [0.12.1](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.12.0...v0.12.1) (2021-02-17)
 
 
