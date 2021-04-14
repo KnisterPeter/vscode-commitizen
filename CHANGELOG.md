@@ -1,3 +1,12 @@
+# [0.14.0](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.13.1...v0.14.0) (2021-04-14)
+
+
+### Features
+
+* remove the error message ([#479](https://github.com/KnisterPeter/vscode-commitizen/issues/479)) ([4b141c3](https://github.com/KnisterPeter/vscode-commitizen/commit/4b141c3881c64c127b141dac7330e6a1dddd57a9))
+
+
+
 ## [0.13.1](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.13.0...v0.13.1) (2021-04-14)
 
 
