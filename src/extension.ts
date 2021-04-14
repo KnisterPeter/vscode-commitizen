@@ -94,7 +94,7 @@ async function findLookupPath(): Promise<string | undefined> {
     );
 
     const pickOptions: vscode.QuickPickOptions = {
-      placeHolder: 'Select folder',
+      placeHolder: 'Select a folder',
       ignoreFocusOut: true,
       matchOnDescription: true,
       matchOnDetail: true
