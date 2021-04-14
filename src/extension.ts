@@ -47,7 +47,6 @@ export async function activate(
           await commit(lookupPath, ccm.message.trim());
         }
       } else {
-        vscode.window.showErrorMessage('Workspace path not found');
         channel.appendLine('Lookup path not found');
       }
     })
