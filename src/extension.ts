@@ -110,29 +110,30 @@ async function findLookupPath(): Promise<string | undefined> {
     ws = vscode.workspace.workspaceFolders[0].uri.fsPath;
   }
 
-  if (getConfiguration().useGitRoot && gitRoot === undefined) {
-    gitRoot = await new Promise<string>((resolve, reject) =>
-      exec(
-        'git rev-parse --show-toplevel',
-        { cwd: ws },
-        (err, stdout, stderr) => {
-          if (err) {
-            reject({ err, stderr });
-          } else if (stdout) {
-            channel.appendLine(`Found git root at: ${stdout}`);
-            resolve(stdout.trim());
-          } else {
-            reject({ err: 'Unable to find git root' });
+  if (getConfiguration().useGitRoot) {
+    if (gitRoot === undefined)
+      gitRoot = await new Promise<string>((resolve, reject) =>
+        exec(
+          'git rev-parse --show-toplevel',
+          { cwd: ws },
+          (err, stdout, stderr) => {
+            if (err) {
+              reject({ err, stderr });
+            } else if (stdout) {
+              channel.appendLine(`Found git root at: ${stdout}`);
+              resolve(stdout.trim());
+            } else {
+              reject({ err: 'Unable to find git root' });
+            }
           }
+        )
+      ).catch((e) => {
+        channel.appendLine(e.err.toString());
+        if (e.stderr) {
+          channel.appendLine(e.stderr.toString());
         }
-      )
-    ).catch((e) => {
-      channel.appendLine(e.err.toString());
-      if (e.stderr) {
-        channel.appendLine(e.stderr.toString());
-      }
-      return undefined;
-    });
+        return undefined;
+      });
 
     return gitRoot;
   }
