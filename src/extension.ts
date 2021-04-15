@@ -111,7 +111,7 @@ async function findLookupPath(): Promise<string | undefined> {
   }
 
   if (getConfiguration().useGitRoot) {
-    if (gitRoot === undefined)
+    if (gitRoot === undefined) {
       gitRoot = await new Promise<string>((resolve, reject) =>
         exec(
           'git rev-parse --show-toplevel',
@@ -134,6 +134,7 @@ async function findLookupPath(): Promise<string | undefined> {
         }
         return undefined;
       });
+    }
 
     return gitRoot;
   }
