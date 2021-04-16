@@ -1,3 +1,12 @@
+## [0.14.1](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.14.0...v0.14.1) (2021-04-16)
+
+
+### Bug Fixes
+
+* gitroot only worked once ([#483](https://github.com/KnisterPeter/vscode-commitizen/issues/483)) ([858d6bc](https://github.com/KnisterPeter/vscode-commitizen/commit/858d6bc72a3e043da0b971aadb19d78ef738323f))
+
+
+
 # [0.14.0](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.13.1...v0.14.0) (2021-04-14)
 
 
