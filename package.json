@@ -70,10 +70,20 @@
     "commands": [
       {
         "command": "vscode-commitizen.commit",
-        "title": "Conventional Commit",
-        "category": "Commitizen"
+        "title": "Conventional Commits",
+        "category": "Commitizen",
+        "icon": "images/commitizen-logo.png"
       }
-    ]
+    ],
+    "menus": {
+      "scm/title": [
+        {
+          "when": "scmProvider == git",
+          "command": "vscode-commitizen.commit",
+          "group": "navigation"
+        }
+      ]
+    }
   },
   "scripts": {
     "linter": "tslint --project .",
