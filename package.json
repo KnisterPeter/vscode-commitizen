@@ -94,8 +94,8 @@
     "publish-extension": "vsce publish --yarn --pat $VSCE_TOKEN $(node -e \"console.log(require('./package.json').version)\")"
   },
   "devDependencies": {
-    "@commitlint/cli": "12.1.4",
-    "@commitlint/config-conventional": "12.1.4",
+    "@commitlint/cli": "13.1.0",
+    "@commitlint/config-conventional": "13.1.0",
     "@knisterpeter/standard-tslint": "1.7.2",
     "@types/mocha": "9.0.0",
     "@types/node": "14.17.6",
