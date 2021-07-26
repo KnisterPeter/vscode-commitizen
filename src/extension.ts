@@ -16,6 +16,7 @@ interface Configuration {
   capitalizeWindowsDriveLetter: boolean;
   useGitRoot: boolean;
   shell: boolean;
+  signCommits: boolean;
 }
 
 function getConfiguration(): Configuration {
@@ -295,7 +296,8 @@ async function commit(cwd: string, message: string): Promise<void> {
 
   try {
     await conditionallyStageFiles(cwd);
-    const result = await execa('git', ['commit', '-m', gitCmdArgs.message], {
+    const signArgument = getConfiguration().signCommits ? ['-S'] : [];
+    const result = await execa('git', ['commit', '-m', gitCmdArgs.message, ...signArgument], {
       cwd: gitCmdArgs.cwd,
       preferLocal: false,
       shell: getConfiguration().shell
