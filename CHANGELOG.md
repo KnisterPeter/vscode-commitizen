@@ -1,3 +1,13 @@
+# [0.15.0](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.14.1...v0.15.0) (2021-07-26)
+
+
+### Features
+
+* add option to sign and verify commits ([#551](https://github.com/KnisterPeter/vscode-commitizen/issues/551)) ([5d0fc90](https://github.com/KnisterPeter/vscode-commitizen/commit/5d0fc90266eb9f1309ab68a36be53d6a20b79722))
+* **icon:** add an icon beside the git scm ([#537](https://github.com/KnisterPeter/vscode-commitizen/issues/537)) ([4303d38](https://github.com/KnisterPeter/vscode-commitizen/commit/4303d385e2987799c3862f7e1d05e642bd3bf638))
+
+
+
 ## [0.14.1](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.14.0...v0.14.1) (2021-04-16)
 
 
