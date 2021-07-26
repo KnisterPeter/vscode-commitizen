@@ -10,9 +10,9 @@
     "@babel/highlight" "^7.14.5"
 
 "@babel/helper-validator-identifier@^7.14.5":
-  version "7.14.5"
-  resolved "https://registry.yarnpkg.com/@babel/helper-validator-identifier/-/helper-validator-identifier-7.14.5.tgz#d0f0e277c512e0c938277faa85a3968c9a44c0e8"
-  integrity sha512-5lsetuxCLilmVGyiLEfoHBRX8UCFD+1m2x3Rj97WrW3V7H3u4RWRXA4evMjImCsin2J2YT0QaVDGf+z8ondbAg==
+  version "7.14.8"
+  resolved "https://registry.yarnpkg.com/@babel/helper-validator-identifier/-/helper-validator-identifier-7.14.8.tgz#32be33a756f29e278a0d644fa08a2c9e0f88a34c"
+  integrity sha512-ZGy6/XQjllhYQrNw/3zfWRwZCTVSiBLZ9DHVZxn9n2gip/7ab8mv2TWlKPIBk26RwedCBoWdjLmn+t9na2Gcow==
 
 "@babel/highlight@^7.14.5":
   version "7.14.5"
@@ -24,9 +24,9 @@
     js-tokens "^4.0.0"
 
 "@babel/runtime@^7.6.3":
-  version "7.14.6"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.14.6.tgz#535203bc0892efc7dec60bdc27b2ecf6e409062d"
-  integrity sha512-/PCB2uJ7oM44tz8YhC4Z/6PeOKXp4K588f+5M3clr1M4zbqztlo0XEfJ2LEzj/FgwfgGcIdl8n7YYjTCI0BYwg==
+  version "7.14.8"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.14.8.tgz#7119a56f421018852694290b9f9148097391b446"
+  integrity sha512-twj3L8Og5SaCRCErB4x4ajbvBIVV77CGeFglHpeg5WC5FF8TZzBWXtTJ4MqaD9QszLYTtr+IsaAL2rEUevb+eg==
   dependencies:
     regenerator-runtime "^0.13.4"
 
@@ -235,10 +235,10 @@
     "@octokit/types" "^6.0.3"
     universal-user-agent "^6.0.0"
 
-"@octokit/openapi-types@^8.3.0":
-  version "8.3.0"
-  resolved "https://registry.yarnpkg.com/@octokit/openapi-types/-/openapi-types-8.3.0.tgz#8bc912edae8c03e002882cf1e29b595b7da9b441"
-  integrity sha512-ZFyQ30tNpoATI7o+Z9MWFUzUgWisB8yduhcky7S4UYsRijgIGSnwUKzPBDGzf/Xkx1DuvUtqzvmuFlDSqPJqmQ==
+"@octokit/openapi-types@^9.1.1":
+  version "9.1.1"
+  resolved "https://registry.yarnpkg.com/@octokit/openapi-types/-/openapi-types-9.1.1.tgz#fb87f2e2f44b95a5720d61dee409a9f1fbc59217"
+  integrity sha512-xmyPP9tVb4T4A6Lk6SL6ScnIqAHpPV4jfMZI8VtY286212ri9J/6IFGuLsZ26daADUmriuLejake4k+azEfnaw==
 
 "@octokit/plugin-paginate-rest@^2.2.0":
   version "2.14.0"
@@ -306,11 +306,11 @@
     "@types/node" ">= 8"
 
 "@octokit/types@^6.0.3", "@octokit/types@^6.16.1", "@octokit/types@^6.18.0":
-  version "6.19.0"
-  resolved "https://registry.yarnpkg.com/@octokit/types/-/types-6.19.0.tgz#e2b6fedb10c8b53cf4574aa5d1a8a5611295297a"
-  integrity sha512-9wdZFiJfonDyU6DjIgDHxAIn92vdSUBOwAXbO2F9rOFt6DJwuAkyGLu1CvdJPphCbPBoV9iSDMX7y4fu0v6AtA==
+  version "6.21.1"
+  resolved "https://registry.yarnpkg.com/@octokit/types/-/types-6.21.1.tgz#d0f2b7598c88e13d0bd87e330d975e3fb2a90180"
+  integrity sha512-PP+m3T5EWZKawru4zi/FvX8KL2vkO5f1fLthx78/7743p7RtJUevt3z7698k+7oAYRA7YuVqfXthSEHqkDvZ8g==
   dependencies:
-    "@octokit/openapi-types" "^8.3.0"
+    "@octokit/openapi-types" "^9.1.1"
 
 "@slack/types@^1.2.1":
   version "1.10.0"
@@ -355,9 +355,9 @@
   integrity sha512-scN0hAWyLVAvLR9AyW7HoFF5sJZglyBsbPuHO4fv7JRvfmPBMfp1ozWqOf/e4wwPNxezBZXRfWzMb6iFLgEVRA==
 
 "@types/node@*", "@types/node@>= 8", "@types/node@>=8.9.0":
-  version "16.3.3"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.3.3.tgz#0c30adff37bbbc7a50eb9b58fae2a504d0d88038"
-  integrity sha512-8h7k1YgQKxKXWckzFCMfsIwn0Y61UK6tlD6y2lOb3hTOIMlK3t9/QwHOhc81TwU+RMf0As5fj7NPjroERCnejQ==
+  version "16.4.3"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.4.3.tgz#c01c1a215721f6dec71b47d88b4687463601ba48"
+  integrity sha512-GKM4FLMkWDc0sfx7tXqPWkM6NBow1kge0fgQh0bOnlqo4iT1kvTvMEKE0c1RtUGnbLlGRXiAA8SumE//90uKAg==
 
 "@types/node@14.17.6":
   version "14.17.6"
@@ -2492,9 +2492,9 @@ redent@^3.0.0:
     strip-indent "^3.0.0"
 
 regenerator-runtime@^0.13.4:
-  version "0.13.7"
-  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.7.tgz#cac2dacc8a1ea675feaabaeb8ae833898ae46f55"
-  integrity sha512-a54FxoJDIr27pgf7IgeQGxmqUNYrcV338lf/6gH456HZ/PhX+5BcwHXG9ajESmwe6WRO0tAzRUrRmNONWgkrew==
+  version "0.13.9"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.9.tgz#8925742a98ffd90814988d7566ad30ca3b263b52"
+  integrity sha512-p3VT+cOEgxFsRRA9X4lkI1E+k2/CtnKtU4gcxyaCUreilL/vqI6CdZ3wxVUx3UOUg+gnUOQQcRI7BmSI656MYA==
 
 require-directory@^2.1.1:
   version "2.1.1"
@@ -3067,9 +3067,9 @@ uc.micro@^1.0.1, uc.micro@^1.0.5:
   integrity sha512-8Y75pvTYkLJW2hWQHXxoqRgV7qb9B+9vFEtidML+7koHUFapnVJAZ6cKs+Qjz5Aw3aZWHMC6u0wJE3At+nSGwA==
 
 uglify-js@^3.1.4:
-  version "3.13.10"
-  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.13.10.tgz#a6bd0d28d38f592c3adb6b180ea6e07e1e540a8d"
-  integrity sha512-57H3ACYFXeo1IaZ1w02sfA71wI60MGco/IQFjOqK+WtKoprh7Go2/yvd2HPtoJILO2Or84ncLccI4xoHMTSbGg==
+  version "3.14.0"
+  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.14.0.tgz#2d723a0afee81e0d08db9354a9c277006e942386"
+  integrity sha512-R/tiGB1ZXp2BC+TkRGLwj8xUZgdfT2f4UZEgX6aVjJ5uttPrr4fYmwTWDGqVnBCLbOXRMY6nr/BTbwCtVfps0g==
 
 underscore@^1.12.1:
   version "1.13.1"
