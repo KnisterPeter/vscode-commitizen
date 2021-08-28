@@ -5,6 +5,7 @@ import * as sander from 'sander';
 // tslint:disable-next-line:no-implicit-dependencies
 import * as vscode from 'vscode';
 import wrap from 'wrap-ansi';
+import type { GitExtension } from '../typings/git';
 
 let channel: vscode.OutputChannel;
 
@@ -17,6 +18,7 @@ interface Configuration {
   useGitRoot: boolean;
   shell: boolean;
   signCommits: boolean;
+  autoCommit:boolean
 }
 
 function getConfiguration(): Configuration {
@@ -45,7 +47,20 @@ export async function activate(
         await ccm.getBreaking();
         await ccm.getFooter();
         if (ccm.complete) {
-          await commit(lookupPath, ccm.message.trim());
+          if (getConfiguration().autoCommit) {
+            await commit(lookupPath, ccm.message.trim());
+          } else {
+            vscode.commands.executeCommand('workbench.view.scm');
+            const gitExtension =
+              vscode.extensions.getExtension<GitExtension>(
+                'vscode.git'
+              )?.exports;
+            if (gitExtension) {
+              const git = gitExtension?.getAPI(1);
+              git.repositories[0].inputBox.value = ccm.message.trim();
+            }
+          }
+          
         }
       } else {
         channel.appendLine('Lookup path not found');
