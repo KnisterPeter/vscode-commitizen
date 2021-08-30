@@ -1,3 +1,12 @@
+## [1.0.1](https://github.com/KnisterPeter/vscode-commitizen/compare/v1.0.0...v1.0.1) (2021-08-30)
+
+
+### Bug Fixes
+
+* revert vscode typings ([0d7bd35](https://github.com/KnisterPeter/vscode-commitizen/commit/0d7bd35146c90a7f525de7e73ec986f948fec95b))
+
+
+
 # [1.0.0](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.15.1...v1.0.0) (2021-08-30)
 
 
