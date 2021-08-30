@@ -1,3 +1,17 @@
+# [1.0.0](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.15.1...v1.0.0) (2021-08-30)
+
+
+### Bug Fixes
+
+* **commit:** fix missing body and footer message ([#579](https://github.com/KnisterPeter/vscode-commitizen/issues/579)) ([8857f85](https://github.com/KnisterPeter/vscode-commitizen/commit/8857f8536ba9eaa0f3618ff6da79447da2388d18)), closes [#443](https://github.com/KnisterPeter/vscode-commitizen/issues/443) [#527](https://github.com/KnisterPeter/vscode-commitizen/issues/527)
+
+
+### BREAKING CHANGES
+
+* **commit:** remove quoteMessageInGitCommit option
+
+
+
 ## [0.15.1](https://github.com/KnisterPeter/vscode-commitizen/compare/v0.15.0...v0.15.1) (2021-07-26)
 
 
