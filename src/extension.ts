@@ -12,7 +12,6 @@ interface Configuration {
   autoSync: boolean;
   subjectLength: number;
   showOutputChannel: 'off' | 'always' | 'onError';
-  quoteMessageInGitCommit: boolean;
   capitalizeWindowsDriveLetter: boolean;
   useGitRoot: boolean;
   shell: boolean;
@@ -45,7 +44,7 @@ export async function activate(
         await ccm.getBreaking();
         await ccm.getFooter();
         if (ccm.complete) {
-          await commit(lookupPath, ccm.message.trim());
+          await commit(lookupPath, ccm.messages);
         }
       } else {
         channel.appendLine('Lookup path not found');
@@ -76,6 +75,11 @@ interface CzConfig {
   footerPrefix: string;
   skipQuestions?: string[];
 }
+type Messages = {
+  main: string;
+  body: string;
+  footer: string;
+};
 
 let gitRoot: string | undefined = undefined;
 async function findLookupPath(): Promise<string | undefined> {
@@ -289,16 +293,41 @@ const DEFAULT_MESSAGES = {
   footer: 'List any ISSUES CLOSED by this change (optional). E.g.: #31, #34'
 };
 
-async function commit(cwd: string, message: string): Promise<void> {
-  const gitCmdArgs = getGitCmdArgs(message, cwd);
+const splitMessages = (message: string) => {
+  const result: string[] = [];
 
-  channel.appendLine(`About to commit '${gitCmdArgs.message}'`);
+  if (message.includes('|')) {
+    message.split('|').forEach((msg) => {
+      result.push('-m', `"${msg}"`);
+    });
+  }
+  return result;
+};
+
+const buildCommitArguments = (message: Messages): string[] => {
+  const messageArguments = ['-m', `"${message.main}"`];
+
+  if (message.body) {
+    messageArguments.push(...splitMessages(message.body));
+  }
+
+  if (message.footer) {
+    messageArguments.push(...splitMessages(message.footer));
+  }
+
+  const signArgument = getConfiguration().signCommits ? ['-S'] : [];
+
+  return [...messageArguments, ...signArgument];
+};
+
+async function commit(cwd: string, message: Messages): Promise<void> {
+
+  channel.appendLine(`About to commit '${message.main}'`);
 
   try {
     await conditionallyStageFiles(cwd);
-    const signArgument = getConfiguration().signCommits ? ['-S'] : [];
-    const result = await execa('git', ['commit', '-m', gitCmdArgs.message, ...signArgument], {
-      cwd: gitCmdArgs.cwd,
+    const result = await execa('git', ['commit', ...buildCommitArguments(message)], {
+      cwd: getGitCwd(cwd),
       preferLocal: false,
       shell: getConfiguration().shell
     });
@@ -311,7 +340,7 @@ async function commit(cwd: string, message: string): Promise<void> {
         channel.show();
       }
     }
-  } catch (e) {
+  } catch (e: any) {
     vscode.window.showErrorMessage(e.message);
     channel.appendLine(e.message);
     channel.appendLine(e.stack);
@@ -359,8 +388,8 @@ class ConventionalCommitMessage {
   ): czConfig is CzConfig {
     return Boolean(
       czConfig &&
-        czConfig.skipQuestions &&
-        czConfig.skipQuestions.includes(messageType)
+      czConfig.skipQuestions &&
+      czConfig.skipQuestions.includes(messageType)
     );
   }
 
@@ -376,8 +405,8 @@ class ConventionalCommitMessage {
   ): czConfig is CzConfig {
     return Boolean(
       czConfig &&
-        czConfig.messages &&
-        czConfig.messages.hasOwnProperty(messageType)
+      czConfig.messages &&
+      czConfig.messages.hasOwnProperty(messageType)
     );
   }
 
@@ -494,7 +523,7 @@ class ConventionalCommitMessage {
       this.next = await ask(
         this.inputMessage('body'),
         (input) =>
-          (this.body = wrap(input.split('|').join('\n'), 72, { hard: true }))
+          (this.body = wrap(input, 72, { hard: true }))
       );
     }
   }
@@ -528,24 +557,26 @@ class ConventionalCommitMessage {
     return this.next && Boolean(this.type) && Boolean(this.subject);
   }
 
-  public get message(): string {
-    return (
-      // tslint:disable-next-line: prefer-template
-      this.type +
-      (typeof this.scope === 'string' && this.scope ? `(${this.scope})` : '') +
-      `: ${this.subject}\n\n${this.body}\n\n` +
-      (this.breaking ? `BREAKING CHANGE: ${this.breaking}\n` : '') +
-      this.messageFooter()
-    );
+  public get messages(): Messages {
+    const main = `${this.type}${typeof this.scope === 'string' && this.scope ?
+        `(${this.scope})` : ''
+      }: ${this.subject}`;
+    const body = `${this.body}`;
+    const footer = `${this.breaking ? `BREAKING CHANGE: ${this.breaking}|` : ''}${this.messageFooter()}`;
+
+    return {
+      main,
+      body,
+      footer
+    };
   }
 
   private messageFooter(): string {
     return this.footer
-      ? `${
-          this.czConfig && this.czConfig.footerPrefix
-            ? this.czConfig.footerPrefix
-            : 'Closes '
-        }${this.footer}`
+      ? `${this.czConfig && this.czConfig.footerPrefix
+        ? this.czConfig.footerPrefix
+        : 'Closes '
+      }${this.footer}`
       : '';
   }
 
@@ -569,25 +600,12 @@ function capitalizeWindowsDriveLetter(path: string): string {
   });
 }
 
-function getGitCmdArgs(message: string, cwd: string): GitCmdArgs {
-  let messageForGit = message;
-
-  if (getConfiguration().quoteMessageInGitCommit) {
-    messageForGit = `"${message}"`;
-  }
+function getGitCwd(cwd: string): string {
   let cwdForGit = cwd;
 
   if (getConfiguration().capitalizeWindowsDriveLetter) {
     cwdForGit = capitalizeWindowsDriveLetter(cwd);
   }
 
-  return {
-    message: messageForGit,
-    cwd: cwdForGit
-  };
-}
-
-interface GitCmdArgs {
-  message: string;
-  cwd: string;
+  return cwdForGit;
 }
