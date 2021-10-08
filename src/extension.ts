@@ -300,7 +300,10 @@ const splitMessages = (message: string) => {
     message.split('|').forEach((msg) => {
       result.push('-m', `"${msg}"`);
     });
+  } else {
+    result.push('-m', `"${message}"`);
   }
+
   return result;
 };
 
