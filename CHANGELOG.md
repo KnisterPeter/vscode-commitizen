@@ -1,3 +1,12 @@
+## [1.0.2](https://github.com/KnisterPeter/vscode-commitizen/compare/v1.0.1...v1.0.2) (2021-11-11)
+
+
+### Bug Fixes
+
+* **bug:** add body in section message commit ([#616](https://github.com/KnisterPeter/vscode-commitizen/issues/616)) ([1967b88](https://github.com/KnisterPeter/vscode-commitizen/commit/1967b8855e686ab5f0a6484d2cbc0f331b383fd0))
+
+
+
 ## [1.0.1](https://github.com/KnisterPeter/vscode-commitizen/compare/v1.0.0...v1.0.1) (2021-08-30)
 
 
