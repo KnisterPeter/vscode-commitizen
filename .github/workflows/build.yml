@@ -38,7 +38,7 @@ jobs:
       - run: |
           yarn vscode:prepublish
           yarn linter
-      - uses: GabrielBB/xvfb-action@v1.5
+      - uses: GabrielBB/xvfb-action@v1.6
         with:
           run: |
             yarn test
