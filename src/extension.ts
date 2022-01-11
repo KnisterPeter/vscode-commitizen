@@ -388,7 +388,7 @@ class ConventionalCommitMessage {
   private static shouldSkip(
     czConfig: CzConfig | undefined,
     messageType: string
-  ): czConfig is CzConfig {
+  ): boolean {
     return Boolean(
       czConfig &&
       czConfig.skipQuestions &&
@@ -473,8 +473,10 @@ class ConventionalCommitMessage {
   }
 
   public async getScope(): Promise<void> {
-    if (this.next) {
-      if (ConventionalCommitMessage.hasScopes(this.czConfig)) {
+    if (this.next && !ConventionalCommitMessage.shouldSkip(this.czConfig, 'scope')) {
+      if (
+        ConventionalCommitMessage.hasScopes(this.czConfig)
+      ) {
         if (this.czConfig.scopes && this.czConfig.scopes[0] !== undefined) {
           const scopePicks = ConventionalCommitMessage.getScopePicks(
             this.czConfig,
@@ -490,9 +492,7 @@ class ConventionalCommitMessage {
             this.inputMessage('customScope')
           );
         }
-      } else if (
-        !ConventionalCommitMessage.shouldSkip(this.czConfig, 'scope')
-      ) {
+      } else {
         this.next = await ask(
           this.inputMessage('scope'),
           (input) => (this.scope = input)
@@ -562,7 +562,7 @@ class ConventionalCommitMessage {
 
   public get messages(): Messages {
     const main = `${this.type}${typeof this.scope === 'string' && this.scope ?
-        `(${this.scope})` : ''
+      `(${this.scope})` : ''
       }: ${this.subject}`;
     const body = `${this.body}`;
     const footer = `${this.breaking ? `BREAKING CHANGE: ${this.breaking}|` : ''}${this.messageFooter()}`;
