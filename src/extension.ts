@@ -433,7 +433,7 @@ class ConventionalCommitMessage {
   private static allowBreakingChanges(
     czConfig: CzConfig | undefined,
     selectedType: string | undefined
-  ): boolean {
+  ): czConfig is CzConfig {
     if (czConfig?.allowBreakingChanges && selectedType) {
       return czConfig?.allowBreakingChanges.some(
         (type: string) => type === selectedType
