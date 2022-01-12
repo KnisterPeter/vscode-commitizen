@@ -1,3 +1,12 @@
+## [1.0.3](https://github.com/KnisterPeter/vscode-commitizen/compare/v1.0.2...v1.0.3) (2022-01-12)
+
+
+### Bug Fixes
+
+* **bug:** make 'scope' skippable if found in skipQuestions ([1ee71b5](https://github.com/KnisterPeter/vscode-commitizen/commit/1ee71b522a5b604d8c47b45545d690c3245a4a1c)), closes [#672](https://github.com/KnisterPeter/vscode-commitizen/issues/672)
+
+
+
 ## [1.0.2](https://github.com/KnisterPeter/vscode-commitizen/compare/v1.0.1...v1.0.2) (2021-11-11)
 
 
