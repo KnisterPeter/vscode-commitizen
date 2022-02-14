@@ -72,7 +72,7 @@
         "command": "vscode-commitizen.commit",
         "title": "Conventional Commits",
         "category": "Commitizen",
-        "icon": "images/commitizen-logo.png"
+        "icon": "images/commitizen-logo.svg"
       }
     ],
     "menus": {

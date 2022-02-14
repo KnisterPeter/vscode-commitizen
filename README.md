@@ -31,3 +31,7 @@ To determine what config to use, the extention will look for a config file in th
   }
 ```
 3. use the default config 
+
+## Attributions
+
+[Commitizen logo](./images/commitizen-logo.svg) is a remixed version of the [logo created by authors of commitizen cz-cli repository](https://github.com/commitizen/cz-cli/blob/a3f4ffa88221013960cd9c6d8711b319016b9e2d/logo/commitizen-logo-color.svg), under MIT license.
