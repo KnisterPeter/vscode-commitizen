@@ -2,7 +2,7 @@
   "name": "vscode-commitizen",
   "displayName": "Visual Studio Code Commitizen Support",
   "description": "commitizen - git commit with conventions",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "publisher": "KnisterPeter",
   "engines": {
     "vscode": "^1.55.0"
