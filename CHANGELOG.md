@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/KnisterPeter/vscode-commitizen/compare/v1.0.3...v1.1.0) (2022-02-15)
+
+
+### Features
+
+* icon from commitizen/cz-cli as command icon ([be78942](https://github.com/KnisterPeter/vscode-commitizen/commit/be78942dd04eb640af0c53f2e1d3e185da36ab51))
+
+
+
 ## [1.0.3](https://github.com/KnisterPeter/vscode-commitizen/compare/v1.0.2...v1.0.3) (2022-01-12)
 
 
