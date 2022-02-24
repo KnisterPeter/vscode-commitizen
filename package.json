@@ -98,7 +98,7 @@
     "@commitlint/config-conventional": "16.2.1",
     "@knisterpeter/standard-tslint": "1.7.2",
     "@types/mocha": "9.1.0",
-    "@types/node": "16.11.25",
+    "@types/node": "16.11.26",
     "@types/vscode": "1.55.0",
     "@types/wrap-ansi": "3.0.0",
     "glob": "7.2.0",
