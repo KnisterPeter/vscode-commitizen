@@ -97,7 +97,7 @@
     "@commitlint/cli": "16.2.3",
     "@commitlint/config-conventional": "16.2.1",
     "@knisterpeter/standard-tslint": "1.7.2",
-    "@types/mocha": "9.1.0",
+    "@types/mocha": "9.1.1",
     "@types/node": "16.11.27",
     "@types/vscode": "1.66.0",
     "@types/wrap-ansi": "3.0.0",
