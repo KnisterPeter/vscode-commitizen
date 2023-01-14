@@ -101,7 +101,7 @@
     "@types/node": "18.11.18",
     "@types/vscode": "1.74.0",
     "@types/wrap-ansi": "3.0.0",
-    "glob": "8.0.3",
+    "glob": "8.1.0",
     "husky": "7.0.4",
     "mocha": "9.2.2",
     "prettier": "2.8.3",
