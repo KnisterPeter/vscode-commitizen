@@ -564,7 +564,7 @@ class ConventionalCommitMessage {
     const main = `${this.type}${typeof this.scope === 'string' && this.scope ?
       `(${this.scope})` : ''
       }: ${this.subject}`;
-    const body = `${this.body}`;
+    const body = `${this.body ? `${this.body}` : ''}`;
     const footer = `${this.breaking ? `BREAKING CHANGE: ${this.breaking}|` : ''}${this.messageFooter()}`;
 
     return {
