@@ -112,7 +112,7 @@
     "vscode-test": "1.6.1"
   },
   "dependencies": {
-    "execa": "^5.0.0",
+    "execa": "^8.0.0",
     "sander": "^0.6.0",
     "wrap-ansi": "^7.0.0"
   },
