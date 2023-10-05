@@ -435,10 +435,10 @@
   resolved "https://registry.yarnpkg.com/@types/parse-json/-/parse-json-4.0.0.tgz#2f8bb441434d163b35fb8ffdccd7138927ffb8c0"
   integrity sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==
 
-"@types/vscode@1.82.0":
-  version "1.82.0"
-  resolved "https://registry.yarnpkg.com/@types/vscode/-/vscode-1.82.0.tgz#89b0b21179dcf5e8cee1664a9a05c5f6c60d38d0"
-  integrity sha512-VSHV+VnpF8DEm8LNrn8OJ8VuUNcBzN3tMvKrNpbhhfuVjFm82+6v44AbDhLvVFgCzn6vs94EJNTp7w8S6+Q1Rw==
+"@types/vscode@1.83.0":
+  version "1.83.0"
+  resolved "https://registry.yarnpkg.com/@types/vscode/-/vscode-1.83.0.tgz#f787d1d94d0b258b9bb97947396b47c1d364e90f"
+  integrity sha512-3mUtHqLAVz9hegut9au4xehuBrzRE3UJiQMpoEHkNl6XHliihO7eATx2BMHs0odsmmrwjJrlixx/Pte6M3ygDQ==
 
 "@types/wrap-ansi@3.0.0":
   version "3.0.0"
