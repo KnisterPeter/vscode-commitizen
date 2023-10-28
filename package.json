@@ -100,7 +100,7 @@
     "@types/mocha": "9.1.1",
     "@types/node": "20.8.9",
     "@types/vscode": "1.83.1",
-    "@types/wrap-ansi": "3.0.0",
+    "@types/wrap-ansi": "8.0.2",
     "glob": "8.1.0",
     "husky": "7.0.4",
     "mocha": "9.2.2",
